@@ -1,3 +1,8 @@
+<!--
+app.blade.phpから<script src="{{ asset('js/app.js') }}" defer></script>をなくしたファイル
+js/app.jsにより、動かないjsファイルが存在するため
+-->
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -9,8 +14,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -49,7 +52,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a>
                                     {{ Auth::user()->name }} さん<span class="caret"></span>
                                 </a>
 
@@ -72,8 +75,6 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
-            @yield('home')
             @yield('register')
             @yield('back')
         </main>

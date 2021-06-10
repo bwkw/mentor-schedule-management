@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.no_app')
 
 @section('register')
 <!DOCTYPE html>
