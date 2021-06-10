@@ -132,7 +132,7 @@
 
 @section('back')
 <div class="col text-center mt-4 mb-4">
-    <a href="/home">
+    <a href="/">
         <button type="button" class="btn btn-secondary">戻る</button>
     </a>
 </div>
