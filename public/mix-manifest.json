@@ -1,4 +1,6 @@
 {
+    "/js/Calendar/MeetingScheduleGet.js": "/js/Calendar/MeetingScheduleGet.js",
+    "/js/Calendar/TimeGridView.js": "/js/Calendar/TimeGridView.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css"
 }
