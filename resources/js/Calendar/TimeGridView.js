@@ -1,6 +1,6 @@
 import { Calendar } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import day from "./MeetingGet";
+import day from "./MeetingScheduleGet";
 
 
 document.addEventListener('DOMContentLoaded', function(){
