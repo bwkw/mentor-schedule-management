@@ -75,7 +75,7 @@ js/app.jsにより、動かないjsファイルが存在するため
         </nav>
 
         <main class="py-4">
-            @yield('create')
+            @yield('register')
             @yield('back')
         </main>
     </div>
