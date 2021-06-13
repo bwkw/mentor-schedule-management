@@ -24681,32 +24681,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 
-/*
-$(function()
-{
-    let MeetingData = "";
-    $
-    .ajax({
-        url: '/meeting/data',
-        type: 'get',
-    })
-    .then(// 1つめは通信成功時のコールバック
-    function (data) {
-        MeetingData = data;
-    },
-    function () {
-        console.error("読み込み失敗");
-    });
-
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
+  var MeetingData = "";
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    url: '/meetings',
+    type: 'get'
+  }).then( // 1つめは通信成功時のコールバック
+  function (data) {
+    MeetingData = data;
+  }, function () {
+    console.error("読み込み失敗");
+  });
 });
-*/
+/* harmony default export */ __webpack_exports__["default"] = (MeetingData);
+/*
+const day=
+{
+    title: '打ち合わせ',
+    start: '2021-06-09T15:15:00',
+    end: '2021-06-09T16:00:00'
+    
+}
 
-var day = {
-  title: '打ち合わせ',
-  start: '2021-06-09T15:15:00',
-  end: '2021-06-09T16:00:00'
-};
-/* harmony default export */ __webpack_exports__["default"] = (day);
+export default day;
+*/
 
 /***/ }),
 
