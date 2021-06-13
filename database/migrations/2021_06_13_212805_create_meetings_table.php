@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateMeetingsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    //面談日時を格納するmeetingsテーブルを定義
     public function up()
     {
         Schema::create('meetings', function (Blueprint $table) {
