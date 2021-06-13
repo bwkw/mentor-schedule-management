@@ -22,7 +22,7 @@ js/app.jsにより、動かないjsファイルが存在するため
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div id="no_app">
         <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color:#DDDDDD">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -75,7 +75,7 @@ js/app.jsにより、動かないjsファイルが存在するため
         </nav>
 
         <main class="py-4">
-            @yield('register')
+            @yield('create')
             @yield('back')
         </main>
     </div>
