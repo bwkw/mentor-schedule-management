@@ -11,12 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('Home.home');
-});
-
 Auth::routes();
 
-Route::get('/register', function () {
-    return view('Calendar.register');
-});
+Route::get('/', 'HomeController@index');
+
+Route::get('/register', 'ScheduleController@register');
