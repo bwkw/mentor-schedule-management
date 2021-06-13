@@ -22,5 +22,8 @@ Route::get('/schedule/register', 'ScheduleController@register');
 //ミーティング日時を保存
 Route::post('/meetings', 'MeetingController@store');
 
+//ミーティング日時を取得
+Route::get('/meetings', 'MeetingController@index');
+
 //イベント日時を保存
 Route::post('/events', 'EventController@store');
