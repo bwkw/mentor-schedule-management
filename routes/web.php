@@ -16,11 +16,11 @@ Auth::routes();
 //ホーム
 Route::get('/', 'HomeController@index');
 
-//スケジュール登録ページ
+//スケジュール（ミーティング/イベント）登録ページ
 Route::get('/schedule/register', 'ScheduleController@register');
 
 //ミーティング日時を保存
-Route::post('/meeting', 'MeetingController@store');
+Route::post('/meetings', 'MeetingController@store');
 
 //イベント日時を保存
-Route::post('/event', 'EventController@store');
+Route::post('/events', 'EventController@store');
