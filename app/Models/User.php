@@ -36,4 +36,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    //リレーションを定義
+    public function meetings(){
+        return $this -> hasMany('App\Models\Meeting');
+    }
 }
