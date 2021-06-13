@@ -4,13 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class ScheduleController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    //ログイン認証
     public function __construct()
     {
         $this->middleware('auth');
@@ -21,8 +17,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function register()
     {
-        return view('Home.home');
+        return view('Schedule.register');
     }
 }
