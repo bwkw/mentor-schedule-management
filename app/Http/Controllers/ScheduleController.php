@@ -12,11 +12,7 @@ class ScheduleController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    //スケジュール（ミーティング/イベント）登録ページ
     public function register()
     {
         return view('Schedule.register');
