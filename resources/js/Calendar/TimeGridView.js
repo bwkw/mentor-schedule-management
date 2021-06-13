@@ -1,6 +1,6 @@
 import { Calendar } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import day from "./MeetingScheduleGet";
+import MeetingData from "./MeetingScheduleGet";
 
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -53,9 +53,9 @@ document.addEventListener('DOMContentLoaded', function(){
     
     //面談日程の追加
     
-    events:[
-      day
-    ]
+    events:
+      MeetingData
+    
   
   });
 

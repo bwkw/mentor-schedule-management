@@ -89,6 +89,7 @@
             </div>
             
             <script src="{{ mix('js/Calendar/TimeGridView.js') }}"></script>
+            <script src="{{ mix('js/Calendar/MeetingScheduleGet.js') }}"></script>
           
         @endsection
 
