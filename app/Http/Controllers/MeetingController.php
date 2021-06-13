@@ -15,7 +15,7 @@ class MeetingController extends Controller
         $this->middleware('auth');
     }
 
-    //meetingsテーブルのデータを表示する
+    //ユーザー情報に紐づいてmeetingsテーブルのデータを表示する
     public function index()
     {
         $your_meetings = User::find(Auth::user()->id)->meetings;
