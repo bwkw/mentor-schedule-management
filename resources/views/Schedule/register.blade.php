@@ -43,7 +43,7 @@
         <div>
             
             <!-- 切り替えタブ部分 -->
-            <ul class="nav nav-tabs nav-justified" role="tablist">
+            <ul class="nav nav-tabs nav-justified mt-3" role="tablist">
                 <!-- 1つ目のタブ -->
                 <li class="nav-item">
                     <a class="nav-link active" href="#meeting"
@@ -56,7 +56,7 @@
                 </li>
             </ul>
             
-            <div class="tab-content mt-4">
+            <div class="tab-content mt-4 mb-3">
                 <div class="tab-pane fade show active" id="meeting" role="tabpanel">
                     <div class="row">
                       
@@ -69,7 +69,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-md">
-                                    <form action="/schedule" method="POST">
+                                    <form action="/meeting" method="POST">
                                         <div class="form-group mb-4">
                                             <label>氏名：</label>
                                             <input type="text" class="form-control">
@@ -135,6 +135,7 @@
         <script type="text/javascript">
             $(function ()
                 {
+                    
                     $('#datePicker').datetimepicker({
                         dayViewHeaderFormat: 'YYYY年 MM月',
                         format: 'YYYY/MM/DD',
