@@ -74,7 +74,6 @@
         <main class="py-4">
             @yield('content')
             @yield('home')
-            @yield('register')
             @yield('back')
         </main>
     </div>
