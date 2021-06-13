@@ -13,7 +13,7 @@
         <div>
             <div class="button">
             
-                <h3><a href="/register">予定の登録</a></h3>
+                <h3><a href="/schedule/register">予定の登録</a></h3>
                 
             </div>
         </div>
