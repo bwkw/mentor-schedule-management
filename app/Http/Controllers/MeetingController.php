@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Meeting;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MeetingController extends Controller
 {
@@ -13,6 +15,13 @@ class MeetingController extends Controller
         $this->middleware('auth');
     }
 
+    //meetingsテーブルのデータを表示する
+    public function index()
+    {
+        $your_meetings = User::find(Auth::user()->id)->meetings;
+        return $your_meetings;
+    }
+    
     //meetingsテーブルに予定を格納
     public function store(Meeting $meeting, Request $request)
     {
