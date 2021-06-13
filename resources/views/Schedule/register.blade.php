@@ -1,6 +1,6 @@
 @extends('layouts.no_app')
 
-@section('create')
+@section('register')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -69,25 +69,43 @@
                             <br>
                             <div class="row">
                                 <div class="col-md">
-                                    <form action="/posts" method="POST">
-                                        <div class="form-group">
+                                    <form action="/schedule" method="POST">
+                                        <div class="form-group mb-4">
                                             <label>氏名：</label>
                                             <input type="text" class="form-control">
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group mb-4">
                                             <label>生徒氏名：</label>
                                             <input type="text" class="form-control">
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group mb-4">
                                             <label>日程：</label>
                                             <div class="input-group date" id="datePicker" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#atePicker"/>
+                                                <input type="text" class="form-control datetimepicker-input" data-target="#datePicker"/>
                                                 <div class="input-group-append" data-target="#datePicker" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="text-center mt-8 mb-4">
+                                        <div class="form-group mb-4">
+                                            <label>開始時間：</label>
+                                            <div class="input-group date" id="timePicker1" data-target-input="nearest">
+                                                <input type="text" class="form-control datetimepicker-input" data-target="#timePicker1"/>
+                                                <div class="input-group-append" data-target="#timePicker1" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-clock"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-4">
+                                            <label>終了時間：</label>
+                                            <div class="input-group date" id="timePicker2" data-target-input="nearest">
+                                                <input type="text" class="form-control datetimepicker-input" data-target="#timePicker2"/>
+                                                <div class="input-group-append" data-target="#timePicker2" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-clock"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-center mt-5">
                                             <button type="button" class="btn btn-secondary">送信</button>
                                         </div>
                                     </form>
@@ -121,9 +139,20 @@
                         dayViewHeaderFormat: 'YYYY年 MM月',
                         format: 'YYYY/MM/DD',
                         locale: 'ja',
-                        showClose: true
-                });
-            });
+                    });
+                    
+                    $('#timePicker1').datetimepicker({
+                        format: 'HH:mm',
+                        locale: 'ja',
+                    });
+                    
+                    $('#timePicker2').datetimepicker({
+                        format: 'HH:mm',
+                        locale: 'ja',
+                    });
+                
+                }
+            );
         </script>
       
     </body>
