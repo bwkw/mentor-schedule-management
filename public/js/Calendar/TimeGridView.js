@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -24680,42 +24680,60 @@ function __classPrivateFieldSet(receiver, state, value, kind, f) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+ //dataに面談日を格納する(ajaxでデータを取得する)
 
+var data = ""; //ajaxで取得したデータを加工するための変数定義
+
+var MeetingDate = [];
+var student_name = "";
+var date = "";
+var starting_time = "";
+var ending_time = "";
+var meetingdata = ""; //ajaxで取得したデータをグローバル変数として使うための関数を定義
+
+function set_meeting_data(x) {
+  data = x;
+} //ajaxでデータを取得する
+
+
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  type: "GET",
+  url: "/meetings",
+  async: false,
+  success: function success(data) {
+    set_meeting_data(data);
+  }
+}); //ajaxで取得したデータを加工する
+
+for (var i = 0; i < data.length; i++) {
+  student_name = data[i]["student_name"];
+  date = data[i]["date"];
+  starting_time = data[i]["starting_time"];
+  ending_time = data[i]["ending_time"];
+  meetingdata = {
+    title: "".concat(student_name, "\u3068\u306E\u9762\u8AC7"),
+    start: "".concat(date, "T").concat(starting_time),
+    end: "".concat(date, "T").concat(ending_time)
+  };
+  MeetingDate.push(meetingdata);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (MeetingDate);
 /*
-let MeetingData = "";
-let title = "";
-$
-.ajax({
-    url: '/meetings',
-    type: 'get',
-})
-.then(// 1つめは通信成功時のコールバック
-    function (data) {
-        MeetingData = data;
-        console.log(MeetingData);
-        
-    },
-    function () {
-        console.error("読み込み失敗");
-    }
-);
+const day=
+[{
+    title: '打ち合わせ',
+    start: '2021-06-09T15:15:00',
+    end: '2021-06-09T16:00:00'
+},
+{
+    title: '打ち合わせ',
+    start: '2021-06-09T15:15:00',
+    end: '2021-06-09T16:00:00'
+}]
 
-
-
-
-export default MeetingData;
+export default day;
 */
-
-var day = [{
-  title: '打ち合わせ',
-  start: '2021-06-09T15:15:00',
-  end: '2021-06-09T16:00:00'
-}, {
-  title: '打ち合わせ',
-  start: '2021-06-09T15:15:00',
-  end: '2021-06-09T16:00:00'
-}];
-/* harmony default export */ __webpack_exports__["default"] = (day);
 
 /***/ }),
 
@@ -24735,22 +24753,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  var calendarEl = document.getElementById('calendar');
+  var calendarEl = document.getElementById('time_grid_view');
   var calendar = new _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__["Calendar"](calendarEl, {
-    //初期設定
+    // 初期設定
     plugins: [_fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_1__["default"]],
     initialView: 'timeGridWeek',
-    //イベントの編集可能に可能に
+    // イベントの編集可能に可能に
     editable: true,
-    //カレンダーに表示する文字の言語選択
+    // カレンダーに表示する文字の言語選択
     locale: 'ja',
-    //カレンダー上のツールバーのボタン配置
+    // カレンダー上のツールバーのボタン配置
     headerToolbar: {
       left: 'prev',
       center: 'title',
       right: 'today next'
     },
-    //カレンダーの見出しの文言から月を削除し、日にちだけに
+    // カレンダーの見出しの文言から月を削除し、日にちだけに
     views: {
       timeGridWeek: {
         titleFormat: function titleFormat(date) {
@@ -24763,17 +24781,23 @@ document.addEventListener('DOMContentLoaded', function () {
             return startMonth + '月～' + endMonth + '月';
           }
         },
+        // カレンダーの日付と曜日部分をカスタム
         dayHeaderFormat: function dayHeaderFormat(date) {
           var day = date.date.day;
           var weekNum = date.date.marker.getDay();
           var week = ['(日)', '(月)', '(火)', '(水)', '(木)', '(金)', '(土)'][weekNum];
           return day + ' ' + week;
-        }
+        },
+        //表示時間を10:00:00〜22:00:00にする
+        slotMinTime: '10:00:00',
+        slotMaxTime: '22:00:00'
       }
     },
-    //現在時刻を可視化
+    // 現在時刻を可視化
     nowIndicator: true,
-    //面談日程の追加
+    // 表示の時間区切りを10分毎にする
+    slotDuration: '00:10:00',
+    // 面談日程の追加
     events: _MeetingScheduleGet__WEBPACK_IMPORTED_MODULE_2__["default"]
   }); //キャンバスにレンダリング
 
@@ -24782,7 +24806,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!*****************************************************!*\
   !*** multi ./resources/js/Calendar/TimeGridView.js ***!
   \*****************************************************/
