@@ -122,6 +122,8 @@ return [
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
+    
+    'slack_member_list' => env('SLACK_MEMBER_LIST'),
 
     /*
     |--------------------------------------------------------------------------
