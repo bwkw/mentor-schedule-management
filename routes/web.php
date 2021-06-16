@@ -13,17 +13,23 @@
 
 Auth::routes();
 
-//ホーム
+// ホーム
 Route::get('/', 'HomeController@index');
 
-//スケジュール（ミーティング/イベント）登録ページ
-Route::get('/schedule/register', 'ScheduleController@register');
-
-//ミーティング日時を保存
-Route::post('/meetings', 'MeetingController@store');
-
-//ミーティング日時を取得
+// ミーティング日時を取得
 Route::get('/meetings', 'MeetingController@index');
 
-//イベント日時を保存
+// ミーティング日時を保存
+Route::post('/meetings', 'MeetingController@store');
+
+// ミーティング日時登録ページ
+Route::get('/meetings/register', 'MeetingController@register');
+
+// イベント日時を取得
+Route::get('/events', 'EventController@index');
+
+// イベント日時を保存
 Route::post('/events', 'EventController@store');
+
+// イベント登録ページ
+Route::get('/meetings/register', 'EventController@register');
