@@ -1,7 +1,7 @@
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import MeetingDate from "./MeetingScheduleGet";
-
+import MeetingDate from './MeetingScheduleGet';
+import $ from 'jquery';
 
 document.addEventListener('DOMContentLoaded', function(){
   var calendarEl = document.getElementById('month_view');
@@ -29,20 +29,31 @@ document.addEventListener('DOMContentLoaded', function(){
         e.dayNumberText = e.dayNumberText.replace('日', '');
       },
       
-    
-    editable: true,
   
     //面談日程の追加
     events:
       MeetingDate,
-      
+    
+    // イベントがクリックされた時、Modal関数を呼ぶ
     eventClick: function(info) {
-        //カレンダーへのリンクはさせません。
-        info.jsEvent.preventDefault();
-        alert('予定あり');
-      }
+      info.jsEvent.preventDefault();
+      Modal(info);
+    },
     
   });
+  
+  // イベントクリック時にモーダルを表示する
+  function Modal(info) {
+      $('.modal').fadeIn();
+      $('.modal-body-title').html(info.event.title);
+    };
+    
+  // モーダルのCloseボタンを押した時に、モーダルを非表示にする
+  $('.modal-close').on('click',function(){
+      $('.modal').fadeOut();
+  });
+    
+
 
   //キャンバスにレンダリング
   calendar.render();

@@ -23468,16 +23468,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fullcalendar/core */ "./node_modules/@fullcalendar/core/main.js");
 /* harmony import */ var _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fullcalendar/daygrid */ "./node_modules/@fullcalendar/daygrid/main.js");
 /* harmony import */ var _MeetingScheduleGet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MeetingScheduleGet */ "./resources/js/Calendar/MeetingScheduleGet.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  var _Calendar;
-
   var calendarEl = document.getElementById('month_view');
-  var calendar = new _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__["Calendar"](calendarEl, (_Calendar = {
+  var calendar = new _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__["Calendar"](calendarEl, {
     //初期設定
     plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__["default"]],
     initialView: 'dayGridMonth',
@@ -23494,12 +23493,26 @@ document.addEventListener('DOMContentLoaded', function () {
     //カレンダーの表示から"日"を削除
     dayCellContent: function dayCellContent(e) {
       e.dayNumberText = e.dayNumberText.replace('日', '');
+    },
+    //面談日程の追加
+    events: _MeetingScheduleGet__WEBPACK_IMPORTED_MODULE_2__["default"],
+    // イベントがクリックされた時、Modal関数を呼ぶ
+    eventClick: function eventClick(info) {
+      info.jsEvent.preventDefault();
+      Modal(info);
     }
-  }, _defineProperty(_Calendar, "editable", true), _defineProperty(_Calendar, "events", _MeetingScheduleGet__WEBPACK_IMPORTED_MODULE_2__["default"]), _defineProperty(_Calendar, "eventClick", function eventClick(info) {
-    //カレンダーへのリンクはさせません。
-    info.jsEvent.preventDefault();
-    alert('予定あり');
-  }), _Calendar)); //キャンバスにレンダリング
+  }); // イベントクリック時にモーダルを表示する
+
+  function Modal(info) {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()('.modal').fadeIn();
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()('.modal-body-title').html(info.event.title);
+  }
+
+  ; // モーダルのCloseボタンを押した時に、モーダルを非表示にする
+
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()('.modal-close').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()('.modal').fadeOut();
+  }); //キャンバスにレンダリング
 
   calendar.render();
 });
