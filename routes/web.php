@@ -32,4 +32,4 @@ Route::get('/events', 'EventController@index');
 Route::post('/events', 'EventController@store');
 
 // イベント登録ページ
-Route::get('/meetings/register', 'EventController@register');
+Route::get('/events/register', 'EventController@register');
