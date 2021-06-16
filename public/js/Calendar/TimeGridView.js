@@ -24749,6 +24749,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fullcalendar/core */ "./node_modules/@fullcalendar/core/main.js");
 /* harmony import */ var _fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fullcalendar/timegrid */ "./node_modules/@fullcalendar/timegrid/main.js");
 /* harmony import */ var _MeetingScheduleGet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MeetingScheduleGet */ "./resources/js/Calendar/MeetingScheduleGet.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -24798,7 +24801,33 @@ document.addEventListener('DOMContentLoaded', function () {
     // 表示の時間区切りを10分毎にする
     slotDuration: '00:10:00',
     // 面談日程の追加
-    events: _MeetingScheduleGet__WEBPACK_IMPORTED_MODULE_2__["default"]
+    events: _MeetingScheduleGet__WEBPACK_IMPORTED_MODULE_2__["default"],
+    // イベントがクリックされた時、Modal関数を呼ぶ
+    eventClick: function eventClick(info) {
+      info.jsEvent.preventDefault();
+      Modal(info);
+    },
+    // 面談と他のイベントの色を区別する
+    eventDidMount: function eventDidMount(info) {
+      if (info.event.title.match(/面談/)) {
+        info.el.style.background = '#6699FF';
+        info.el.style.border = '#6699FF';
+      } else {
+        info.el.style.background = '#FFCC00';
+        info.el.style.border = '#FFCC00';
+      }
+    }
+  }); // イベントクリック時にモーダルを表示する
+
+  function Modal(info) {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()('.modal').fadeIn();
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()('.modal-body-title').html(info.event.title);
+  }
+
+  ; // モーダルのCloseボタンを押した時に、モーダルを非表示にする
+
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()('.modal-close').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()('.modal').fadeOut();
   }); //キャンバスにレンダリング
 
   calendar.render();

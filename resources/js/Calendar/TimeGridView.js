@@ -1,7 +1,7 @@
 import { Calendar } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import MeetingDate from "./MeetingScheduleGet";
-
+import MeetingDate from './MeetingScheduleGet';
+import $ from 'jquery';
 
 document.addEventListener('DOMContentLoaded', function(){
   var calendarEl = document.getElementById('time_grid_view');
@@ -63,10 +63,40 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // 面談日程の追加
     events:
-      MeetingDate
+      MeetingDate,
     
+    // イベントがクリックされた時、Modal関数を呼ぶ
+    eventClick: function(info) {
+      info.jsEvent.preventDefault();
+      Modal(info);
+    },
+    
+    // 面談と他のイベントの色を区別する
+    eventDidMount: function (info) {
+      if (info.event.title.match(/面談/)){
+        info.el.style.background='#6699FF';
+        info.el.style.border='#6699FF';
+      }else{
+        info.el.style.background='#FFCC00';
+        info.el.style.border='#FFCC00';
+      }
+    }
   });
+  
+  // イベントクリック時にモーダルを表示する
+  function Modal(info) {
+      $('.modal').fadeIn();
+      $('.modal-body-title').html(info.event.title);
+  };
+    
+  // モーダルのCloseボタンを押した時に、モーダルを非表示にする
+  $('.modal-close').on('click',function(){
+      $('.modal').fadeOut();
+  });
+  
+  
 
   //キャンバスにレンダリング
   calendar.render();
 });
+
