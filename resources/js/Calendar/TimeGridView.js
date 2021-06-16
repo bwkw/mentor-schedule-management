@@ -1,6 +1,7 @@
 import { Calendar } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import MeetingDate from './MeetingScheduleGet';
+import EventDate from './EventScheduleGet';
 import $ from 'jquery';
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -61,9 +62,9 @@ document.addEventListener('DOMContentLoaded', function(){
     // 表示の時間区切りを10分毎にする
     slotDuration: '00:10:00',
 
-    // 面談日程の追加
+    // 面談・イベント日程の追加（配列を合体）
     events:
-      MeetingDate,
+      MeetingDate.concat(EventDate),
     
     // イベントがクリックされた時、Modal関数を呼ぶ
     eventClick: function(info) {

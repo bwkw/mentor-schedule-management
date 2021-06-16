@@ -1,6 +1,7 @@
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import MeetingDate from './MeetingScheduleGet';
+import EventDate from './EventScheduleGet';
 import $ from 'jquery';
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -29,10 +30,9 @@ document.addEventListener('DOMContentLoaded', function(){
         e.dayNumberText = e.dayNumberText.replace('日', '');
       },
       
-  
-    //面談日程の追加
+    // 面談・イベント日程の追加（配列を合体）
     events:
-      MeetingDate,
+      MeetingDate.concat(EventDate),
     
     // イベントがクリックされた時、Modal関数を呼ぶ
     eventClick: function(info) {
