@@ -30,13 +30,13 @@ class EventController extends Controller
         return redirect('/');
     }
     
-    // ミーティング登録ページ
+    // イベント日時登録ページ
     public function register()
     {
         // メンターと生徒の名前をそれぞれのテーブルから取得
         $mentors = \DB::table('mentors')->get();
         $students = \DB::table('students')->get();
-        return view('Meeting.register') -> with(
+        return view('Event.register') -> with(
             [
                 'mentors' => $mentors,
                 'students' => $students,
