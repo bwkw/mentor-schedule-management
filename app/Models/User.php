@@ -37,8 +37,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
-    //リレーションを定義
+    // meetingsテーブルとリレーションを定義
     public function meetings(){
         return $this -> hasMany('App\Models\Meeting');
+    }
+    
+    // eventsテーブルとリレーションを定義
+    public function events(){
+        return $this -> hasMany('App\Models\Event');
     }
 }
