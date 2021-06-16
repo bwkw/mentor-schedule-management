@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Meeting extends Model
 {
-    //指定したカラムに対してfillが出来るように$fillable
+    // 指定したカラムに対してfillが出来るように$fillable定義
     protected $fillable = [
         'mentor_name',
         'student_name',
