@@ -10999,7 +10999,7 @@ var student_name = "";
 var date = "";
 var starting_time = "";
 var ending_time = "";
-var meetingdata = ""; //ajaxで取得したデータをグローバル変数として使うための関数を定義
+var meeting_date = ""; //ajaxで取得したデータをグローバル変数として使うための関数を定義
 
 function set_meeting_data(x) {
   data = x;
@@ -11020,12 +11020,12 @@ for (var i = 0; i < data.length; i++) {
   date = data[i]["date"];
   starting_time = data[i]["starting_time"];
   ending_time = data[i]["ending_time"];
-  meetingdata = {
+  meeting_date = {
     title: "".concat(student_name, "\u3068\u306E\u9762\u8AC7"),
     start: "".concat(date, "T").concat(starting_time),
     end: "".concat(date, "T").concat(ending_time)
   };
-  MeetingDate.push(meetingdata);
+  MeetingDate.push(meeting_date);
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (MeetingDate);

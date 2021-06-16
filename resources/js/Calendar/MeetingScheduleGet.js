@@ -10,7 +10,7 @@ let student_name = "";
 let date = "";
 let starting_time = "";
 let ending_time = "";
-let meetingdata = "";
+let meeting_date = "";
 
 //ajaxで取得したデータをグローバル変数として使うための関数を定義
 function set_meeting_data(x){
@@ -33,13 +33,13 @@ for (let i = 0; i < data.length; i++) {
     date = data[i]["date"];
     starting_time = data[i]["starting_time"];
     ending_time = data[i]["ending_time"];
-    meetingdata = 
+    meeting_date = 
         {
             title:`${student_name}との面談`,
             start: `${date}T${starting_time}`,
             end: `${date}T${ending_time}`
         }
-    MeetingDate.push(meetingdata);
+    MeetingDate.push(meeting_date);
  }
  
 
