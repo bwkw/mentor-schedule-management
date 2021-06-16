@@ -10,15 +10,15 @@
             
             <div class="col-md-4 border">
                 <br>
-                <h2>面談予約</h2>
+                <h2>イベント予約</h2>
                 <br>
                 <div class="row">
                     <div class="col-md">
-                        <form action="/meetings" method="POST">
+                        <form action="/events" method="POST">
                             {{ csrf_field() }}
                             <div class="form-group mb-4">
                                 <label>メンター氏名(slack)：</label>
-                                <select data-placeholder="選択してください" class="form-control chosen" data-placeholder="選択してください" name="event[mentor_name]" >
+                                <select data-placeholder="選択してください" class="form-control chosen" data-placeholder="選択してください" name="event[mentor_name]">
                                     <option value="">選択してください</option>
                                     @foreach($mentors as $mentor)
                                         <option value="{{$mentor->slack_name}}">{{$mentor->slack_name}}</option>
@@ -27,7 +27,7 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label for="date" class="col-form-label">イベント名</label>
-                                <input type="text" class="form-control" name="event[title]">
+                                <input type="text" class="form-control" name="event[event_name]">
                             </div>
                             <div class="form-group mb-4">
                                 <label for="date" class="col-form-label">日程</label>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label for="starting_time" class="col-form-label">開始時間</label>
-                                <input type="time" class="form-control" name="evnet[starting_time]" id="starting_time">
+                                <input type="time" class="form-control" name="event[starting_time]" id="starting_time">
                             </div>
                             <div class="form-group mb-4">
                                 <label for="ending_time" class="col-form-label">終了時間</label>
@@ -43,7 +43,7 @@
                             </div>
                             
                             <!-- ユーザーidをリレーション用に格納 -->
-                            <input type="hidden" name="meeting[user_id]" value="{{ Auth::user()->id }}">
+                            <input type="hidden" name="event[user_id]" value="{{ Auth::user()->id }}">
                             
                             <div class="text-center mt-3 mb-2">
                                 <button type="submit" class="btn btn-secondary">送信</button>
@@ -89,6 +89,7 @@
     
     <script src="{{ mix('js/Calendar/TimeGridView.js') }}"></script>
     <script src="{{ mix('js/Calendar/MeetingScheduleGet.js') }}"></script>
+    <script src="{{ mix('js/Calendar/EventScheduleGet.js') }}"></script>
     <!-- <script src="{{ mix('js/SelectChosen.js') }}"></script> -->
     
 @endsection
