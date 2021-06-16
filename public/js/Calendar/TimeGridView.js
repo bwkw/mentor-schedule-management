@@ -24669,6 +24669,59 @@ function __classPrivateFieldSet(receiver, state, value, kind, f) {
 
 /***/ }),
 
+/***/ "./resources/js/Calendar/EventScheduleGet.js":
+/*!***************************************************!*\
+  !*** ./resources/js/Calendar/EventScheduleGet.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+ // dataにイベント日を格納する(ajaxでデータを取得する)
+
+var data = ""; // ajaxで取得したデータを加工するための変数定義
+
+var EventDate = [];
+var event_name = "";
+var date = "";
+var starting_time = "";
+var ending_time = "";
+var event_date = ""; //ajaxで取得したデータをグローバル変数として使うための関数を定義
+
+function set_event_data(x) {
+  data = x;
+} //ajaxでデータを取得する
+
+
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  type: "GET",
+  url: "/events",
+  async: false,
+  success: function success(data) {
+    set_event_data(data);
+  }
+}); //ajaxで取得したデータを加工する
+
+for (var i = 0; i < data.length; i++) {
+  event_name = data[i]["event_name"];
+  date = data[i]["date"];
+  starting_time = data[i]["starting_time"];
+  ending_time = data[i]["ending_time"];
+  event_date = {
+    title: "".concat(event_name),
+    start: "".concat(date, "T").concat(starting_time),
+    end: "".concat(date, "T").concat(ending_time)
+  };
+  EventDate.push(event_date);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (EventDate);
+
+/***/ }),
+
 /***/ "./resources/js/Calendar/MeetingScheduleGet.js":
 /*!*****************************************************!*\
   !*** ./resources/js/Calendar/MeetingScheduleGet.js ***!
@@ -24689,7 +24742,7 @@ var student_name = "";
 var date = "";
 var starting_time = "";
 var ending_time = "";
-var meetingdata = ""; //ajaxで取得したデータをグローバル変数として使うための関数を定義
+var meeting_date = ""; //ajaxで取得したデータをグローバル変数として使うための関数を定義
 
 function set_meeting_data(x) {
   data = x;
@@ -24710,12 +24763,12 @@ for (var i = 0; i < data.length; i++) {
   date = data[i]["date"];
   starting_time = data[i]["starting_time"];
   ending_time = data[i]["ending_time"];
-  meetingdata = {
+  meeting_date = {
     title: "".concat(student_name, "\u3068\u306E\u9762\u8AC7"),
     start: "".concat(date, "T").concat(starting_time),
     end: "".concat(date, "T").concat(ending_time)
   };
-  MeetingDate.push(meetingdata);
+  MeetingDate.push(meeting_date);
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (MeetingDate);
@@ -24749,8 +24802,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fullcalendar/core */ "./node_modules/@fullcalendar/core/main.js");
 /* harmony import */ var _fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fullcalendar/timegrid */ "./node_modules/@fullcalendar/timegrid/main.js");
 /* harmony import */ var _MeetingScheduleGet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MeetingScheduleGet */ "./resources/js/Calendar/MeetingScheduleGet.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _EventScheduleGet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EventScheduleGet */ "./resources/js/Calendar/EventScheduleGet.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -24800,8 +24855,8 @@ document.addEventListener('DOMContentLoaded', function () {
     nowIndicator: true,
     // 表示の時間区切りを10分毎にする
     slotDuration: '00:10:00',
-    // 面談日程の追加
-    events: _MeetingScheduleGet__WEBPACK_IMPORTED_MODULE_2__["default"],
+    // 面談・イベント日程の追加（配列を合体）
+    events: _MeetingScheduleGet__WEBPACK_IMPORTED_MODULE_2__["default"].concat(_EventScheduleGet__WEBPACK_IMPORTED_MODULE_3__["default"]),
     // イベントがクリックされた時、Modal関数を呼ぶ
     eventClick: function eventClick(info) {
       info.jsEvent.preventDefault();
@@ -24820,14 +24875,14 @@ document.addEventListener('DOMContentLoaded', function () {
   }); // イベントクリック時にモーダルを表示する
 
   function Modal(info) {
-    jquery__WEBPACK_IMPORTED_MODULE_3___default()('.modal').fadeIn();
-    jquery__WEBPACK_IMPORTED_MODULE_3___default()('.modal-body-title').html(info.event.title);
+    jquery__WEBPACK_IMPORTED_MODULE_4___default()('.modal').fadeIn();
+    jquery__WEBPACK_IMPORTED_MODULE_4___default()('.modal-body-title').html(info.event.title);
   }
 
   ; // モーダルのCloseボタンを押した時に、モーダルを非表示にする
 
-  jquery__WEBPACK_IMPORTED_MODULE_3___default()('.modal-close').on('click', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_3___default()('.modal').fadeOut();
+  jquery__WEBPACK_IMPORTED_MODULE_4___default()('.modal-close').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_4___default()('.modal').fadeOut();
   }); //キャンバスにレンダリング
 
   calendar.render();
