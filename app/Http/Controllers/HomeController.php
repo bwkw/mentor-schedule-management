@@ -32,7 +32,6 @@ class HomeController extends Controller
         $starting_times = array_column($meetings_events_array, 'starting_time');
         array_multisort($dates, SORT_DESC, $meetings_events_array);
         array_multisort($starting_times, SORT_DESC, $meetings_events_array);
-        //dd($meetings_events_array);
         return view('Home.home') -> with(['meetings_events_array' => $meetings_events_array]);
     }
 }
