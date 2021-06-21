@@ -11,7 +11,7 @@ class Meeting extends Model
         'mentor_name',
         'student_name',
         'date',
-        'starting_time',
+        'beginning_time',
         'ending_time',
         'user_id',
     ];

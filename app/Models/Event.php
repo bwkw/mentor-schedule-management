@@ -11,7 +11,7 @@ class Event extends Model
         'mentor_name',
         'event_name',
         'date',
-        'starting_time',
+        'beginning_time',
         'ending_time',
         'user_id',
     ];
