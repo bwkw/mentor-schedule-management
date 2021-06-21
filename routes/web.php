@@ -25,6 +25,9 @@ Route::post('/meetings', 'MeetingController@store');
 // ミーティング日時登録ページ
 Route::get('/meetings/register', 'MeetingController@register');
 
+// ミーティング日時削除
+Route::delete('/meetings/{meeting}', 'MeetingController@delete');
+
 // イベント日時を取得
 Route::get('/events', 'EventController@index');
 
