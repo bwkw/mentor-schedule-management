@@ -17,6 +17,7 @@ class HomeController extends Controller
     {
         $meetings = \DB::table('meetings')->get();
         $events = \DB::table('events')->get();
+        
         // 二つのオブジェクトを結合する
         $meetings_events = (object)array_merge_recursive((array) $meetings, (array) $events);
         
@@ -24,14 +25,19 @@ class HomeController extends Controller
         $meetings_events_array = "";
         foreach($meetings_events as $meeting_event)
         {
-            $meetings_events_array=$meeting_event;
+            $meetings_events_array = $meeting_event;
         }
         
-        // 配列からdateとstarting_timeを取得し、日時で昇順に並び替える
+        // 配列からdate(日付)、starting_time（開始時間)、ending_time(終了時間)を取得する
         $dates = array_column($meetings_events_array, 'date');
-        $starting_times = array_column($meetings_events_array, 'starting_time');
-        array_multisort($dates, SORT_DESC, $meetings_events_array);
-        array_multisort($starting_times, SORT_DESC, $meetings_events_array);
+        $beginning_times = array_column($meetings_events_array, 'beginning_time');
+        $ending_times = array_column($meetings_events_array, 'ending_time');
+        
+        // 取得したdate(日付)、starting_time（開始時間)、ending_time(終了時間)を基に、配列を並び替える
+        array_multisort(array_map("strtotime", $dates), SORT_ASC,
+                        array_map("strtotime", $beginning_times), SORT_ASC,
+                        array_map("strtotime", $ending_times), SORT_ASC, $meetings_events_array);
+
         return view('Home.home') -> with(['meetings_events_array' => $meetings_events_array]);
     }
 }
