@@ -30,7 +30,7 @@ class MeetingController extends Controller
         return redirect('/');
     }
     
-    // ミーティング日時登録ページ
+    // ミーティング日時登録ページへの遷移
     public function register()
     {
         // メンターと生徒の名前をそれぞれのテーブルから取得
@@ -42,5 +42,12 @@ class MeetingController extends Controller
                 'students' => $students,
             ]
         );
+    }
+    
+    // ミーティング日時削除
+    public function delete(Meeting $meeting)
+    {
+        $meeting -> delete();
+        return redirect('/');
     }
 }
