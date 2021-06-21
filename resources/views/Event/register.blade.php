@@ -20,8 +20,8 @@
                                 <label>メンター氏名(slack)：</label>
                                 <select data-placeholder="選択してください" class="form-control chosen" data-placeholder="選択してください" name="event[mentor_name]">
                                     <option value="">選択してください</option>
-                                    @foreach($mentors as $mentor)
-                                        <option value="{{$mentor->slack_name}}">{{$mentor->slack_name}}</option>
+                                    @foreach( $mentors as $mentor )
+                                        <option value="{{ $mentor->slack_name }}">{{ $mentor->slack_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -34,8 +34,8 @@
                                 <input type="date" class="form-control" name="event[date]" id="date">
                             </div>
                             <div class="form-group mb-4">
-                                <label for="starting_time" class="col-form-label">開始時間</label>
-                                <input type="time" class="form-control" name="event[starting_time]" id="starting_time">
+                                <label for="beginning_time" class="col-form-label">開始時間</label>
+                                <input type="time" class="form-control" name="event[beginning_time]" id="beginning_time">
                             </div>
                             <div class="form-group mb-4">
                                 <label for="ending_time" class="col-form-label">終了時間</label>
@@ -75,7 +75,7 @@
                 <div class="modal-body-title"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary modal-close" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary modal-close" data-dismiss="modal">閉じる</button>
             </div>
         </div>
     </div>
@@ -88,8 +88,8 @@
     </div>
     
     <script src="{{ mix('js/Calendar/TimeGridView.js') }}"></script>
-    <script src="{{ mix('js/Calendar/MeetingScheduleGet.js') }}"></script>
-    <script src="{{ mix('js/Calendar/EventScheduleGet.js') }}"></script>
+    <script src="{{ mix('js/Calendar/FetchMeetingSchedule.js') }}"></script>
+    <script src="{{ mix('js/Calendar/FetchEventSchedule.js') }}"></script>
     <!-- <script src="{{ mix('js/SelectChosen.js') }}"></script> -->
     
 @endsection
