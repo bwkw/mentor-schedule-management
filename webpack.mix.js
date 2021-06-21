@@ -14,7 +14,7 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/Calendar/MonthView.js', 'public/js/Calendar')
    .js('resources/js/Calendar/TimeGridView.js', 'public/js/Calendar')
-   .js('resources/js/Calendar/MeetingScheduleGet.js', 'public/js/Calendar')
-   .js('resources/js/Calendar/EventScheduleGet.js', 'public/js/Calendar')
+   .js('resources/js/Calendar/FetchMeetingSchedule.js', 'public/js/Calendar')
+   .js('resources/js/Calendar/FetchEventSchedule.js', 'public/js/Calendar')
    .js('resources/js/SelectChosen.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');

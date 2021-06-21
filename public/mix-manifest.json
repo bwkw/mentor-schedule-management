@@ -1,6 +1,6 @@
 {
-    "/js/Calendar/EventScheduleGet.js": "/js/Calendar/EventScheduleGet.js",
-    "/js/Calendar/MeetingScheduleGet.js": "/js/Calendar/MeetingScheduleGet.js",
+    "/js/Calendar/FetchEventSchedule.js": "/js/Calendar/FetchEventSchedule.js",
+    "/js/Calendar/FetchMeetingSchedule.js": "/js/Calendar/FetchMeetingSchedule.js",
     "/js/Calendar/MonthView.js": "/js/Calendar/MonthView.js",
     "/js/Calendar/TimeGridView.js": "/js/Calendar/TimeGridView.js",
     "/js/SelectChosen.js": "/js/SelectChosen.js",
