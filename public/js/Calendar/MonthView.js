@@ -23388,10 +23388,10 @@ function __classPrivateFieldSet(receiver, state, value, kind, f) {
 
 /***/ }),
 
-/***/ "./resources/js/Calendar/EventScheduleGet.js":
-/*!***************************************************!*\
-  !*** ./resources/js/Calendar/EventScheduleGet.js ***!
-  \***************************************************/
+/***/ "./resources/js/Calendar/FetchEventSchedule.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/Calendar/FetchEventSchedule.js ***!
+  \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -23406,7 +23406,7 @@ var data = ""; // ajaxで取得したデータを加工するための変数定�
 var EventDate = [];
 var event_name = "";
 var date = "";
-var starting_time = "";
+var beginning_time = "";
 var ending_time = "";
 var event_date = ""; //ajaxで取得したデータをグローバル変数として使うための関数を定義
 
@@ -23427,11 +23427,11 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
 for (var i = 0; i < data.length; i++) {
   event_name = data[i]["event_name"];
   date = data[i]["date"];
-  starting_time = data[i]["starting_time"];
+  beginning_time = data[i]["beginning_time"];
   ending_time = data[i]["ending_time"];
   event_date = {
     title: "".concat(event_name),
-    start: "".concat(date, "T").concat(starting_time),
+    start: "".concat(date, "T").concat(beginning_time),
     end: "".concat(date, "T").concat(ending_time)
   };
   EventDate.push(event_date);
@@ -23441,10 +23441,10 @@ for (var i = 0; i < data.length; i++) {
 
 /***/ }),
 
-/***/ "./resources/js/Calendar/MeetingScheduleGet.js":
-/*!*****************************************************!*\
-  !*** ./resources/js/Calendar/MeetingScheduleGet.js ***!
-  \*****************************************************/
+/***/ "./resources/js/Calendar/FetchMeetingSchedule.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/Calendar/FetchMeetingSchedule.js ***!
+  \*******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -23459,7 +23459,7 @@ var data = ""; //ajaxで取得したデータを加工するための変数定�
 var MeetingDate = [];
 var student_name = "";
 var date = "";
-var starting_time = "";
+var beginning_time = "";
 var ending_time = "";
 var meeting_date = ""; //ajaxで取得したデータをグローバル変数として使うための関数を定義
 
@@ -23480,11 +23480,11 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
 for (var i = 0; i < data.length; i++) {
   student_name = data[i]["student_name"];
   date = data[i]["date"];
-  starting_time = data[i]["starting_time"];
+  beginning_time = data[i]["beginning_time"];
   ending_time = data[i]["ending_time"];
   meeting_date = {
     title: "".concat(student_name, "\u3068\u306E\u9762\u8AC7"),
-    start: "".concat(date, "T").concat(starting_time),
+    start: "".concat(date, "T").concat(beginning_time),
     end: "".concat(date, "T").concat(ending_time)
   };
   MeetingDate.push(meeting_date);
@@ -23520,8 +23520,8 @@ export default day;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fullcalendar/core */ "./node_modules/@fullcalendar/core/main.js");
 /* harmony import */ var _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fullcalendar/daygrid */ "./node_modules/@fullcalendar/daygrid/main.js");
-/* harmony import */ var _MeetingScheduleGet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MeetingScheduleGet */ "./resources/js/Calendar/MeetingScheduleGet.js");
-/* harmony import */ var _EventScheduleGet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EventScheduleGet */ "./resources/js/Calendar/EventScheduleGet.js");
+/* harmony import */ var _FetchMeetingSchedule__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FetchMeetingSchedule */ "./resources/js/Calendar/FetchMeetingSchedule.js");
+/* harmony import */ var _FetchEventSchedule__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FetchEventSchedule */ "./resources/js/Calendar/FetchEventSchedule.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_4__);
 
@@ -23550,7 +23550,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.dayNumberText = e.dayNumberText.replace('日', '');
     },
     // 面談・イベント日程の追加（配列を合体）
-    events: _MeetingScheduleGet__WEBPACK_IMPORTED_MODULE_2__["default"].concat(_EventScheduleGet__WEBPACK_IMPORTED_MODULE_3__["default"]),
+    events: _FetchMeetingSchedule__WEBPACK_IMPORTED_MODULE_2__["default"].concat(_FetchEventSchedule__WEBPACK_IMPORTED_MODULE_3__["default"]),
     // イベントがクリックされた時、Modal関数を呼ぶ
     eventClick: function eventClick(info) {
       info.jsEvent.preventDefault();
