@@ -1,7 +1,7 @@
 import { Calendar } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import MeetingDate from './MeetingScheduleGet';
-import EventDate from './EventScheduleGet';
+import MeetingDate from './FetchMeetingSchedule';
+import EventDate from './FetchEventSchedule';
 import $ from 'jquery';
 
 document.addEventListener('DOMContentLoaded', function(){
