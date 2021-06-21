@@ -18,7 +18,7 @@ class CreateEventsTable extends Migration
             $table->string('mentor_name');
             $table->string('event_name');
             $table->date('date');
-            $table->time('starting_time');
+            $table->time('beginning_time');
             $table->time('ending_time');
             $table->integer('user_id');
             $table->timestamps();
