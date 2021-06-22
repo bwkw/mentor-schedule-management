@@ -116,11 +116,11 @@
     <script src="{{ mix('js/Calendar/MonthView.js') }}"></script>
     
     <script>
-            function deleteSchedule(e){
-                if (confirm('削除すると復元が出来ません。\n本当に削除しますか？')){
-                    document.getElementById('form_delete').submit();
-                }
+        function deleteSchedule(e){
+            if (confirm('削除すると復元が出来ません。\n本当に削除しますか？')){
+                document.getElementById('form_delete').submit();
             }
-        </script>
+        }
+    </script>
 
 @endsection
