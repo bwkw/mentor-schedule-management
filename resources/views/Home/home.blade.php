@@ -44,10 +44,10 @@
                                             {{ $meeting_event->date }}：{{ $meeting_event->beginning_time }}〜{{$meeting_event->ending_time}}<br>
                                             {{ $meeting_event->student_name }}との面談
                                             
-                                            <form action="/meetings/{{ $meeting_event->id }}" id="form_delete" method="post">
+                                            <form action="/meetings/{{ $meeting_event->id }}" id="meetings_delete.{{ $meeting_event->id }}" method="post">
                                                 {{ csrf_field() }}
                                                 @method('DELETE')
-                                                <button type="button" class="btn btn-secondary" onclick="deleteSchedule(this);">削除</button> 
+                                                <button type="button" class="btn btn-secondary" id="{{ $meeting_event->id }}" onclick="deleteMeetingSchedule(this.id);">削除</button>
                                             </form>
                                             
                                             <a href="/meetings/{{ $meeting_event->id }}/edit">
@@ -61,10 +61,11 @@
                                             {{ $meeting_event->date }}：{{ $meeting_event->beginning_time }}〜{{ $meeting_event->ending_time }}<br>
                                             {{ $meeting_event->event_name }}
                                             
-                                            <form action="/events/{{ $meeting_event->id }}" id="form_delete" method="post">
+                                            <form action="/events/{{ $meeting_event->id }}" id="events_delete.{{ $meeting_event->id }}" method="post">
                                                 {{ csrf_field() }}
                                                 @method('DELETE')
-                                                <button type="button" class="btn btn-secondary" onclick="deleteSchedule(this);">削除</button> 
+                                                <button type="button" class="btn btn-secondary" id="{{ $meeting_event->id }}" onclick="deleteEventSchedule(this.id);">削除</button>
+                                                <div style="display:none" id="event_id">{{ $meeting_event->id }}</div>
                                             </form>
                                             
                                             <a href="/events/{{$meeting_event->id}}/edit">
@@ -116,9 +117,17 @@
     <script src="{{ mix('js/Calendar/MonthView.js') }}"></script>
     
     <script>
-        function deleteSchedule(e){
+        /* 面談を削除する */
+        function deleteMeetingSchedule(meeting_id){
             if (confirm('削除すると復元が出来ません。\n本当に削除しますか？')){
-                document.getElementById('form_delete').submit();
+                document.getElementById("meetings_delete." + meeting_id ).submit();
+            }
+        }
+        
+        /* イベントを削除する */
+        function deleteEventSchedule(event_id){
+            if (confirm('削除すると復元が出来ません。\n本当に削除しますか？')){
+                document.getElementById("events_delete." + event_id ).submit();
             }
         }
     </script>
