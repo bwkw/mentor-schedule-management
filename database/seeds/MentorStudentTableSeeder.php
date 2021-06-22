@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UserStudentTableSeeder extends Seeder
+class MentorStudentTableSeeder extends Seeder
 {
     // Slackからidとnameを取得し、メンターと生徒を区別
     // users table(メンター)とstudents table（生徒）に格納（アプリ利用者をメンターとして想定しているため）
