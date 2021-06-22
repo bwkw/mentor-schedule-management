@@ -33,12 +33,12 @@ class MeetingController extends Controller
     // 面談日時登録ページへの遷移
     public function register()
     {
-        // メンターと生徒の名前をそれぞれのテーブルから取得
-        $mentors = \DB::table('mentors')->get();
+        // ユーザー（メンター）と生徒の名前を取得
+        $your_name = Auth::user()->name;
         $students = \DB::table('students')->get();
         return view('Meeting.register') -> with(
             [
-                'mentors' => $mentors,
+                'your_name' => $your_name,
                 'students' => $students,
             ]
         );

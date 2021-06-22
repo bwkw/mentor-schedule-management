@@ -33,12 +33,12 @@ class EventController extends Controller
     // イベント日時登録ページ
     public function register()
     {
-        // メンターと生徒の名前をそれぞれのテーブルから取得
-        $mentors = \DB::table('mentors')->get();
+        // ユーザー（メンター）と生徒の名前を取得
+        $your_name = Auth::user()->name;
         $students = \DB::table('students')->get();
         return view('Event.register') -> with(
             [
-                'mentors' => $mentors,
+                'your_name' => $your_name,
                 'students' => $students,
             ]
         );
