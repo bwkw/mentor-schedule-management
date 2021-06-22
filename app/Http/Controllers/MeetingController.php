@@ -50,4 +50,18 @@ class MeetingController extends Controller
         $meeting -> delete();
         return redirect('/');
     }
+    
+    // 面談日時編集ページへの遷移
+    public function edit(Meeting $meeting)
+    {
+        return view('Meeting.edit') -> with( ['meeting' => $meeting] );
+    }
+    
+    // 面談日時の更新
+    public function update(Meeting $meeting, Request $request)
+    {
+        $input_meeting_editted = $request['meeting'];
+        $meeting->fill($input_meeting_editted)->save();
+        return redirect('/');
+    }
 }

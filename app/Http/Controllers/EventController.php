@@ -50,4 +50,18 @@ class EventController extends Controller
         $event -> delete();
         return redirect('/');
     }
+    
+    // イベント日時編集ページへの遷移
+    public function edit(Event $event)
+    {
+        return view('Event.edit') -> with( ['event' => $event] );
+    }
+    
+    // 面談日時の更新
+    public function update(Event $event, Request $request)
+    {
+        $input_event_editted = $request['event'];
+        $event->fill($input_event_editted)->save();
+        return redirect('/');
+    }
 }
