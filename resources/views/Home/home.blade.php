@@ -67,7 +67,7 @@
                                                 <button type="button" class="btn btn-secondary" onclick="deleteSchedule(this);">削除</button> 
                                             </form>
                                             
-                                            <a href="/events/{{$meeting_event->id}}">
+                                            <a href="/events/{{$meeting_event->id}}/edit">
                                                 <button type="button" class="btn btn-secondary">編集</button>
                                             </a>
                                         </li>
