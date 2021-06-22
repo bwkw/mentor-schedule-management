@@ -5,13 +5,13 @@ use Illuminate\Database\Seeder;
 class MentorStudentTableSeeder extends Seeder
 {
     // Slackからidとnameを取得し、メンターと生徒を区別
-    // users table(メンター)とstudents table（生徒）に格納（アプリ利用者をメンターとして想定しているため）
+    // mentors table（メンター情報格納テーブル）とstudents table（生徒情報格納テーブル）に格納
      public function run()
     {
         // Slack APIを叩く（curlを利用）
         $headers = [
-        'Authorization: Bearer '.config('app.slack_member_list'),
-        'Content-Type: application/json;charser¥t=ytf-8'
+            'Authorization: Bearer '.config('app.slack_member_list'),
+            'Content-Type: application/json;charser¥t=ytf-8'
         ];
         
         $url = "https://slack.com/api/users.list";
