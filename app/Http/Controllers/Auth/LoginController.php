@@ -20,6 +20,13 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    
+    // 認証に利用するフィールドnameに変更
+    public function username()
+    {
+        return 'name';
+    }
+
 
     /**
      * Where to redirect users after login.
