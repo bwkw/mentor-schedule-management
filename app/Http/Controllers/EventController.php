@@ -43,4 +43,11 @@ class EventController extends Controller
             ]
         );
     }
+    
+    // イベント日時を削除
+    public function delete(Event $event)
+    {
+        $event -> delete();
+        return redirect('/');
+    }
 }
