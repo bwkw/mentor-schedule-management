@@ -62,11 +62,11 @@ class MentorStudentTableSeeder extends Seeder
             }
         }
         
-        //一度mentorsテーブル、studentsテーブルを初期化
+        // mentorsテーブル、studentsテーブルの情報を削除
         DB::table('mentors')->truncate();
         DB::table('students')->truncate();
         
-        // usersテーブルに値を格納していく
+        // mentorsテーブルに値を格納
         foreach($mentor_slack_id_name_list as $slack_id => $slack_name) {
             DB::table('mentors')->insert(
                 ['slack_id' => $slack_id,
@@ -74,7 +74,7 @@ class MentorStudentTableSeeder extends Seeder
             );
         }
         
-        //studentsテーブルに値を格納していく
+        //studentsテーブルに値を格納
         foreach($student_slack_id_name_list as $slack_id => $slack_name) {
             DB::table('students')->insert(
                 ['slack_id' => $slack_id,
