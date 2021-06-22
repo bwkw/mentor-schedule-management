@@ -123,6 +123,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
     
+    'users_password' => env('USERS_PASSWORD'),
+    
     'slack_member_list' => env('SLACK_MEMBER_LIST'),
 
     /*
