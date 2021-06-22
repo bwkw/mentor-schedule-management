@@ -21,7 +21,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
     
-    // 認証に利用するフィールドnameに変更
+    // 認証に利用するフィールドをnameに変更
     public function username()
     {
         return 'name';
