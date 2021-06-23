@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Meeting;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,9 +17,16 @@ class HomeController extends Controller
     //ホーム
     public function index()
     {
-        $meetings = \DB::table('meetings')->get();
-        $events = \DB::table('events')->get();
+        // 現在の日時を取得
+        $now_date = date('Y-m-d');
+        $now_time = date('H:i:s');
         
+        // 「現在の日付より前」かつ、「現在の時刻より終了時間が前」の情報をテーブルから削除
+        Meeting::where('date', '<=', $now_date) -> where('ending_time', '<=', $now_time) -> delete();
+        Event::where('date', '<=', $now_date) -> where('ending_time', '<=', $now_time) -> delete();
+
+        $meetings = Meeting::get();
+        $events = Event::get();
         // 二つのオブジェクトを結合する
         $meetings_events = (object)array_merge_recursive((array) $meetings, (array) $events);
         
