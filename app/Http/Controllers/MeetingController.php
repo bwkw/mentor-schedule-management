@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Meeting;
 use Illuminate\Http\Request;
+use App\Http\Requests\MeetingRegisterRequest;
 use Illuminate\Support\Facades\Auth;
 
 class MeetingController extends Controller
@@ -23,7 +24,7 @@ class MeetingController extends Controller
     }
     
     // meetingsテーブルに予定を格納
-    public function store(Meeting $meeting, Request $request)
+    public function store(Meeting $meeting, MeetingRegisterRequest $request)
     {
         $input_meeting = $request['meeting'];
         $meeting->fill($input_meeting)->save();

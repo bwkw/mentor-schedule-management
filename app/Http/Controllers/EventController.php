@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use App\Http\Requests\EventRegisterRequest;
 use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
@@ -23,7 +24,7 @@ class EventController extends Controller
     }
     
     // eventsテーブルに予定を格納
-    public function store(Event $event, Request $request)
+    public function store(Event $event, EventRegisterRequest $request)
     {
         $input_event = $request['event'];
         $event->fill($input_event)->save();
