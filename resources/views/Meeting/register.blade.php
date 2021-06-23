@@ -22,24 +22,28 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label>生徒氏名(slack)：</label>
-                                <select data-placeholder="選択してください" class="form-control chosen" data-placeholder="選択してください" name="meeting[student_name]" >
+                                <select data-placeholder="選択してください" class="form-control chosen" data-placeholder="選択してください" name="meeting[student_name]" value="{{ old('meeting.student_name') }}">
                                     <option value="">選択してください</option>
                                     @foreach($students as $student)
                                         <option value="{{ $student->slack_name }}">{{ $student->slack_name }}</option>
                                     @endforeach
                                 </select>
+                                <p class="student_name__error" style="color:red">{{ $errors->first('meeting.student_name') }}</p>
                             </div>
                             <div class="form-group mb-4">
-                                <label for="date" class="col-form-label">日程</label>
-                                <input type="date" class="form-control" name="meeting[date]" id="date">
+                                <label for="date" class="col-form-label">日付</label>
+                                <input type="date" class="form-control" name="meeting[date]" value="{{ old('meeting.date') }}" id="date">
+                                <p class="date__error" style="color:red">{{ $errors->first('meeting.date') }}</p>
                             </div>
                             <div class="form-group mb-4">
                                 <label for="beginning_time" class="col-form-label">開始時間</label>
-                                <input type="time" class="form-control" name="meeting[beginning_time]" id="beginning_time">
+                                <input type="time" class="form-control" name="meeting[beginning_time]" value="{{ old('meeting.beginning_time') }}" id="beginning_time">
+                                <p class="beginning_time__error" style="color:red">{{ $errors->first('meeting.beginning_time') }}</p>
                             </div>
                             <div class="form-group mb-4">
                                 <label for="ending_time" class="col-form-label">終了時間</label>
-                                <input type="time" class="form-control" name="meeting[ending_time]" id="ending_time">
+                                <input type="time" class="form-control" name="meeting[ending_time]" value="{{ old('meeting.ending_time') }}" id="ending_time">
+                                <p class="ending_time__error" style="color:red">{{ $errors->first('meeting.ending_time') }}</p>
                             </div>
                             
                             <!-- ユーザーidをリレーション用に格納 -->

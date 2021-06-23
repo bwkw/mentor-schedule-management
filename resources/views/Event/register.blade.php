@@ -22,19 +22,23 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label for="date" class="col-form-label">イベント名</label>
-                                <input type="text" class="form-control" name="event[event_name]">
+                                <input type="text" class="form-control" name="event[event_name]" value="{{ old('event.event_name') }}">
+                                <p class="event_name__error" style="color:red">{{ $errors->first('event.event_name') }}</p>
                             </div>
                             <div class="form-group mb-4">
-                                <label for="date" class="col-form-label">日程</label>
-                                <input type="date" class="form-control" name="event[date]" id="date">
+                                <label for="date" class="col-form-label">日付</label>
+                                <input type="date" class="form-control" name="event[date]" value="{{ old('event.date') }}" id="date">
+                                <p class="date__error" style="color:red">{{ $errors->first('event.date') }}</p>
                             </div>
                             <div class="form-group mb-4">
                                 <label for="beginning_time" class="col-form-label">開始時間</label>
-                                <input type="time" class="form-control" name="event[beginning_time]" id="beginning_time">
+                                <input type="time" class="form-control" name="event[beginning_time]" value="{{ old('event.beginning_time') }}" id="beginning_time">
+                                <p class="starting_time__error" style="color:red">{{ $errors->first('event.beginning_time') }}</p>
                             </div>
                             <div class="form-group mb-4">
                                 <label for="ending_time" class="col-form-label">終了時間</label>
-                                <input type="time" class="form-control" name="event[ending_time]" id="ending_time">
+                                <input type="time" class="form-control" name="event[ending_time]" value="{{ old('event.ending_time') }}"id="ending_time">
+                                <p class="ending_time__error" style="color:red">{{ $errors->first('event.ending_time') }}</p>
                             </div>
                             
                             <!-- ユーザーidをリレーション用に格納 -->
