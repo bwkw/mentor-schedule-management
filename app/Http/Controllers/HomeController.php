@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Meeting;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,8 +27,8 @@ class HomeController extends Controller
         Meeting::where('date', '<=', $now_date) -> where('ending_time', '<=', $now_time) -> delete();
         Event::where('date', '<=', $now_date) -> where('ending_time', '<=', $now_time) -> delete();
 
-        $meetings = Meeting::get();
-        $events = Event::get();
+        $meetings = User::find(Auth::user()->id)->meetings;
+        $events = User::find(Auth::user()->id)->events;
         
         // 二つのオブジェクトを結合する
         $meetings_events = (object)array_merge_recursive((array) $meetings, (array) $events);
