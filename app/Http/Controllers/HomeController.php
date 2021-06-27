@@ -27,6 +27,7 @@ class HomeController extends Controller
         Meeting::where('date', '<=', $now_date) -> where('ending_time', '<=', $now_time) -> delete();
         Event::where('date', '<=', $now_date) -> where('ending_time', '<=', $now_time) -> delete();
 
+        // ユーザー情報に基づいて、meetingsテーブルとeventsテーブルから情報を取得
         $meetings = User::find(Auth::user()->id)->meetings;
         $events = User::find(Auth::user()->id)->events;
         
