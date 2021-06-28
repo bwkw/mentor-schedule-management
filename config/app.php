@@ -126,6 +126,8 @@ return [
     'users_password' => env('USERS_PASSWORD'),
     
     'slack_member_list' => env('SLACK_MEMBER_LIST'),
+    
+    'slack_post_message' => env('SLACK_POST_MESSAGE'),
 
     /*
     |--------------------------------------------------------------------------
