@@ -1,13 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
+
 <link rel='stylesheet' href="{{asset('css/modal.css')}}">
+
+<script>
+    $(function() {
+        $(".chosen-select").chosen({  
+            search_contains: true  ,
+            no_results_text:"検索に該当する候補はありません"
+        })  
+    }); 
+</script>
+
+
 
     <div class="mt-5">
         <div class="row">
             <div class="col-md-1">
             </div>  
-            
             <div class="col-md-4 border">
                 <br>
                 <h2>面談予約</h2>
@@ -22,7 +33,7 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label>生徒氏名(slack)：</label>
-                                <select data-placeholder="選択してください" class="form-control chosen" data-placeholder="選択してください" name="meeting[student_name]" value="{{ old('meeting.student_name') }}">
+                                <select data-placeholder="選択してください" class="form-control chosen-select" name="meeting[student_name]" value="{{ old('meeting.student_name') }}">
                                     <option value="">選択してください</option>
                                     @foreach($students as $student)
                                         <option value="{{ $student->slack_name }}">{{ $student->slack_name }}</option>
@@ -94,6 +105,7 @@
     <script src="{{ mix('js/Calendar/TimeGridView.js') }}"></script>
     <script src="{{ mix('js/Calendar/FetchMeetingSchedule.js') }}"></script>
     <script src="{{ mix('js/Calendar/FetchEventSchedule.js') }}"></script>
-    <!-- <script src="{{ mix('js/SelectChosen.js') }}"></script> -->
+    
+    
     
 @endsection
