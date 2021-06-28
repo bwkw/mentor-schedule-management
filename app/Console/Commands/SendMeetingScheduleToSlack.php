@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Meeting;
+use App\Models\Mentor;
 use App\Models\Student;
 use Illuminate\Console\Command;
 
@@ -54,26 +55,37 @@ class SendMeetingScheduleToSlack extends Command
         ];
         $now_day_of_the_week = $week[date('w')];
         
-        $meetings = Meeting::get();
-        
-        // meetingsテーブルから今日の日付と一致するものを取得
-        $today_meetings = Meeting::where('date', '=', $now_date) -> get();
-        
         // slackに送るテキスト
         $text="*".date('m/d')."（".$now_day_of_the_week."）"."の面談予定*\n\n";
-        foreach($today_meetings as $today_meeting)
+        
+        $mentors = Mentor::get();
+        
+        foreach($mentors as $mentor)
         {
-            $student_name = $today_meeting->student_name;
-            $mentor_name = $today_meeting->student_name;
-            $student_slack_id = Student::where('slack_name', '=', $student_name) -> value('slack_id');
-            $beginning_time = $today_meeting->beginning_time;
-            $ending_time = $today_meeting->ending_time;
-            $text = $text."<@".$student_slack_id.">\n".$beginning_time."〜".$ending_time."\n";
+            $mentor_name = $mentor -> slack_name;
+            $today_meetings_for_a_mentor = Meeting::where('date', '=', $now_date) -> where('mentor_name', '=', $mentor_name) -> get();
+            if(count($today_meetings_for_a_mentor)==0){
+                $text = $text;
+            }else{
+                $text = $text.$mentor_name."との面談者\n";
+                foreach($today_meetings_for_a_mentor as $today_meeting_for_a_mentor){
+                    $student_name = $today_meeting_for_a_mentor -> student_name;
+                    $student_slack_id = Student::where('slack_name', '=', $student_name) -> value('slack_id');
+                    $beginning_time = $today_meeting_for_a_mentor -> beginning_time;
+                    $ending_time = $today_meeting_for_a_mentor -> ending_time;
+                    $text = $text."<@".$student_slack_id.">\t".$beginning_time."〜".$ending_time."\n";
+                }
+            }
         }
         
-        // S
+        // もし面談者がいない場合のslackに送るテキスト
+        if(strpos($text,"との面談者") == false){
+            $text = $text."本日の面談予定はありません";
+        }
+        
+        // Slack APIを叩いてslackチームにメッセージを送信
         $headers = [
-            'Authorization: Bearer xoxb-1970177030343-1998481059441-VOgMybEN6KBSc3X76FarwRR9',
+            'Authorization: Bearer '. config('app.slack_post_message'),
             'Content-Type: application/json;charser¥t=ytf-8'
         ];
         
@@ -100,6 +112,6 @@ class SendMeetingScheduleToSlack extends Command
         
         $result = curl_exec($ch); 
         
-        // curl_close($ch);
+        curl_close($ch);
     }
 }
