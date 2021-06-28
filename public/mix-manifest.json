@@ -3,7 +3,6 @@
     "/js/Calendar/FetchMeetingSchedule.js": "/js/Calendar/FetchMeetingSchedule.js",
     "/js/Calendar/MonthView.js": "/js/Calendar/MonthView.js",
     "/js/Calendar/TimeGridView.js": "/js/Calendar/TimeGridView.js",
-    "/js/SelectChosen.js": "/js/SelectChosen.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css"
 }
