@@ -11,6 +11,7 @@
 |
 */
 
+// Auth認証からregisterを削除
 Auth::routes(['register' => false]);
 
 // ホーム
