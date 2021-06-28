@@ -10,7 +10,7 @@ class MentorStudentTableSeeder extends Seeder
     {
         // Slack APIを叩いてslackチームのユーザーリストを取得
         $headers = [
-            'Authorization: Bearer '.config('app.slack_member_list'),
+            'Authorization: Bearer '. config('app.slack_member_list'),
             'Content-Type: application/json;charser¥t=ytf-8'
         ];
         
