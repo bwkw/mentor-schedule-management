@@ -10,6 +10,7 @@ class Meeting extends Model
     protected $fillable = [
         'mentor_name',
         'student_name',
+        'how_to'
         'date',
         'beginning_time',
         'ending_time',
