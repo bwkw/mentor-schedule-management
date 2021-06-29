@@ -10996,6 +10996,7 @@ var data = ""; //ajaxで取得したデータを加工するための変数定�
 
 var MeetingDate = [];
 var student_name = "";
+var how_to = "";
 var date = "";
 var beginning_time = "";
 var ending_time = "";
@@ -11017,11 +11018,12 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
 
 for (var i = 0; i < data.length; i++) {
   student_name = data[i]["student_name"];
+  how_to = data[i]["how_to"];
   date = data[i]["date"];
   beginning_time = data[i]["beginning_time"];
   ending_time = data[i]["ending_time"];
   meeting_date = {
-    title: "".concat(student_name, "\u3068\u306E\u9762\u8AC7"),
+    title: "".concat(student_name, "\u3068\u306E\u9762\u8AC7\uFF08").concat(how_to, "\uFF09"),
     start: "".concat(date, "T").concat(beginning_time),
     end: "".concat(date, "T").concat(ending_time)
   };

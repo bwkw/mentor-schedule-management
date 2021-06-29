@@ -7,6 +7,7 @@ let data = "";
 //ajaxで取得したデータを加工するための変数定義
 let MeetingDate =[];
 let student_name = "";
+let how_to = "";
 let date = "";
 let beginning_time = "";
 let ending_time = "";
@@ -30,12 +31,13 @@ $.ajax({
 //ajaxで取得したデータを加工する
 for (let i = 0; i < data.length; i++) {
     student_name = data[i]["student_name"];
+    how_to = data[i]["how_to"];
     date = data[i]["date"];
     beginning_time = data[i]["beginning_time"];
     ending_time = data[i]["ending_time"];
     meeting_date = 
         {
-            title:`${student_name}との面談`,
+            title:`${student_name}との面談（${how_to}）`,
             start: `${date}T${beginning_time}`,
             end: `${date}T${ending_time}`
         }
