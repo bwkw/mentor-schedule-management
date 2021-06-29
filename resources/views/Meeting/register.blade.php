@@ -4,6 +4,10 @@
 
 <link rel='stylesheet' href="{{asset('css/modal.css')}}">
 
+<!-- jquery chosen用のファイル読み込み -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+
 <script>
     $(function() {
         $(".chosen-select").chosen({  
@@ -12,8 +16,6 @@
         })  
     }); 
 </script>
-
-
 
     <div class="mt-5">
         <div class="row">
