@@ -23408,11 +23408,11 @@ var event_name = "";
 var date = "";
 var beginning_time = "";
 var ending_time = "";
-var event_date = ""; //ajaxで取得したデータをグローバル変数として使うための関数を定義
+var event_date = ""; // ajaxで取得したデータをグローバル変数として使うための関数を定義
 
 function set_event_data(x) {
   data = x;
-} //ajaxでデータを取得する
+} // ajaxでデータを取得する
 
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
@@ -23422,7 +23422,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
   success: function success(data) {
     set_event_data(data);
   }
-}); //ajaxで取得したデータを加工する
+}); // ajaxで取得したデータを加工する
 
 for (var i = 0; i < data.length; i++) {
   event_name = data[i]["event_name"];
@@ -23452,7 +23452,7 @@ for (var i = 0; i < data.length; i++) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
- //dataに面談日を格納する(ajaxでデータを取得する)
+ // dataに面談日を格納する(ajaxでデータを取得する)
 
 var data = ""; //ajaxで取得したデータを加工するための変数定義
 
@@ -23462,11 +23462,11 @@ var how_to = "";
 var date = "";
 var beginning_time = "";
 var ending_time = "";
-var meeting_date = ""; //ajaxで取得したデータをグローバル変数として使うための関数を定義
+var meeting_date = ""; // ajaxで取得したデータをグローバル変数として使うための関数を定義
 
 function set_meeting_data(x) {
   data = x;
-} //ajaxでデータを取得する
+} // ajaxでデータを取得する
 
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
@@ -23476,7 +23476,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
   success: function success(data) {
     set_meeting_data(data);
   }
-}); //ajaxで取得したデータを加工する
+}); // ajaxで取得したデータを加工する
 
 for (var i = 0; i < data.length; i++) {
   student_name = data[i]["student_name"];
@@ -23493,21 +23493,6 @@ for (var i = 0; i < data.length; i++) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (MeetingDate);
-/*
-const day=
-[{
-    title: '打ち合わせ',
-    start: '2021-06-09T15:15:00',
-    end: '2021-06-09T16:00:00'
-},
-{
-    title: '打ち合わせ',
-    start: '2021-06-09T15:15:00',
-    end: '2021-06-09T16:00:00'
-}]
-
-export default day;
-*/
 
 /***/ }),
 
