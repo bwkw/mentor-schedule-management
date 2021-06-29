@@ -33,6 +33,20 @@ class SendMeetingScheduleToSlack extends Command
         parent::__construct();
     }
     
+    // 曜日を取得する関数
+    public function day_of_the_week($w){
+        $Week = array(
+            '日',//0
+            '月',//1
+            '火',//2
+            '水',//3
+            '木',//4
+            '金',//5
+            '土'//6
+        );
+        return $Week[$w];
+    }
+    
     /**
      * Execute the console command.
      *
@@ -43,37 +57,28 @@ class SendMeetingScheduleToSlack extends Command
         
         $now_date = date('Y-m-d');
         
-        // 今日の曜日を取得
-        $week = [
-            '日', // 0
-            '月', // 1
-            '火', // 2
-            '水', // 3
-            '木', // 4
-            '金', // 5
-            '土', // 6
-        ];
-        $now_day_of_the_week = $week[date('w')];
+        $now_day_of_the_week = $this->day_of_the_week(date('w'));
         
         // slackに送るテキスト
-        $text="*".date('m/d')."（".$now_day_of_the_week."）"."の面談予定*\n\n";
+        $text="*".date('m/d')."（".$now_day_of_the_week."）"."の面談予定*\n";
         
         $mentors = Mentor::get();
         
         foreach($mentors as $mentor)
         {
             $mentor_name = $mentor -> slack_name;
-            $today_meetings_for_a_mentor = Meeting::where('date', '=', $now_date) -> where('mentor_name', '=', $mentor_name) -> get();
+            $today_meetings_for_a_mentor = Meeting::where('date', '=', $now_date) -> where('mentor_name', '=', $mentor_name) -> orderBy('beginning_time') -> get();
             if(count($today_meetings_for_a_mentor)==0){
                 $text = $text;
             }else{
-                $text = $text.$mentor_name."との面談者\n";
+                $text = $text."\n".$mentor_name."との面談者\n";
                 foreach($today_meetings_for_a_mentor as $today_meeting_for_a_mentor){
                     $student_name = $today_meeting_for_a_mentor -> student_name;
                     $student_slack_id = Student::where('slack_name', '=', $student_name) -> value('slack_id');
+                    $how_to_meeting = $today_meeting_for_a_mentor -> how_to;
                     $beginning_time = $today_meeting_for_a_mentor -> beginning_time;
                     $ending_time = $today_meeting_for_a_mentor -> ending_time;
-                    $text = $text."<@".$student_slack_id.">\t".$beginning_time."〜".$ending_time."\n";
+                    $text = $text."<@".$student_slack_id.">\t".substr($beginning_time, 0, strlen($beginning_time)-3)."〜".substr($ending_time, 0, strlen($ending_time)-3)."\t".$how_to_meeting."\n";
                 }
             }
         }
