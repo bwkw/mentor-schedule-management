@@ -12,12 +12,12 @@ let beginning_time = "";
 let ending_time = "";
 let event_date = "";
 
-//ajaxで取得したデータをグローバル変数として使うための関数を定義
+// ajaxで取得したデータをグローバル変数として使うための関数を定義
 function set_event_data(x){
     data = x;
 }
 
-//ajaxでデータを取得する
+// ajaxでデータを取得する
 $.ajax({
     type: "GET",
     url: "/events",
@@ -27,7 +27,7 @@ $.ajax({
     }
 });
 
-//ajaxで取得したデータを加工する
+// ajaxで取得したデータを加工する
 for (let i = 0; i < data.length; i++) {
     event_name = data[i]["event_name"];
     date = data[i]["date"];

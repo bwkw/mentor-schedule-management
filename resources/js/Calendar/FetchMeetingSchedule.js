@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 
-//dataに面談日を格納する(ajaxでデータを取得する)
+// dataに面談日を格納する(ajaxでデータを取得する)
 let data = "";
 
 //ajaxで取得したデータを加工するための変数定義
@@ -13,12 +13,12 @@ let beginning_time = "";
 let ending_time = "";
 let meeting_date = "";
 
-//ajaxで取得したデータをグローバル変数として使うための関数を定義
+// ajaxで取得したデータをグローバル変数として使うための関数を定義
 function set_meeting_data(x){
     data = x;
 }
 
-//ajaxでデータを取得する
+// ajaxでデータを取得する
 $.ajax({
     type: "GET",
     url: "/meetings",
@@ -28,7 +28,7 @@ $.ajax({
     }
 });
 
-//ajaxで取得したデータを加工する
+// ajaxで取得したデータを加工する
 for (let i = 0; i < data.length; i++) {
     student_name = data[i]["student_name"];
     how_to = data[i]["how_to"];
@@ -46,19 +46,3 @@ for (let i = 0; i < data.length; i++) {
  
 
 export default MeetingDate;
-
-/*
-const day=
-[{
-    title: '打ち合わせ',
-    start: '2021-06-09T15:15:00',
-    end: '2021-06-09T16:00:00'
-},
-{
-    title: '打ち合わせ',
-    start: '2021-06-09T15:15:00',
-    end: '2021-06-09T16:00:00'
-}]
-
-export default day;
-*/

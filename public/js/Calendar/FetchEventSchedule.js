@@ -10999,11 +10999,11 @@ var event_name = "";
 var date = "";
 var beginning_time = "";
 var ending_time = "";
-var event_date = ""; //ajaxで取得したデータをグローバル変数として使うための関数を定義
+var event_date = ""; // ajaxで取得したデータをグローバル変数として使うための関数を定義
 
 function set_event_data(x) {
   data = x;
-} //ajaxでデータを取得する
+} // ajaxでデータを取得する
 
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
@@ -11013,7 +11013,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
   success: function success(data) {
     set_event_data(data);
   }
-}); //ajaxで取得したデータを加工する
+}); // ajaxで取得したデータを加工する
 
 for (var i = 0; i < data.length; i++) {
   event_name = data[i]["event_name"];
