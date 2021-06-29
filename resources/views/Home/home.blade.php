@@ -42,7 +42,7 @@
                                     
                                         <li class="list-group-item d-flex justify-content-around align-items-center">
                                             {{ $meeting_event->date }}：{{ $meeting_event->beginning_time }}〜{{$meeting_event->ending_time}}<br>
-                                            {{ $meeting_event->student_name }}との面談
+                                            {{ $meeting_event->student_name }}との面談（{{ $meeting_event->how_to }}）
                                             
                                             <form action="/meetings/{{ $meeting_event->id }}" id="meetings_delete.{{ $meeting_event->id }}" method="post">
                                                 {{ csrf_field() }}
