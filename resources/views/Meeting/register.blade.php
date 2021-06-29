@@ -44,6 +44,15 @@
                                 <p class="student_name__error" style="color:red">{{ $errors->first('meeting.student_name') }}</p>
                             </div>
                             <div class="form-group mb-4">
+                                <label>面談形式：</label>
+                                <select class="form-control" name="meeting[how_to]" value="{{ old('meeting.how_to') }}">
+                                    <option value="">選択してください</option>
+                                    <option value="対面">対面</option>
+                                    <option value="オンライン">オンライン</option>
+                                </select>
+                                <p class="how_to__error" style="color:red">{{ $errors->first('meeting.how_to') }}</p>
+                            </div>
+                            <div class="form-group mb-4">
                                 <label for="date" class="col-form-label">日付</label>
                                 <input type="date" class="form-control" name="meeting[date]" value="{{ old('meeting.date') }}" id="date">
                                 <p class="date__error" style="color:red">{{ $errors->first('meeting.date') }}</p>

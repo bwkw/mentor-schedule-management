@@ -25,6 +25,7 @@ class MeetingRegisterRequest extends FormRequest
     {
         return [
             'meeting.student_name' => 'required',
+            'meeting.how_to' => 'required',
     	    'meeting.date' => 'required',
     	    'meeting.beginning_time' => 'required',
     	    'meeting.ending_time' => 'required',
@@ -33,7 +34,8 @@ class MeetingRegisterRequest extends FormRequest
     
     public function messages(){
         return [
-            'meeting.student_name.required'  => '名前を入力してください。',
+            'meeting.student_name.required'  => '生徒氏名を入力してください。',
+            'meeting.how_to.required'  => '面談形式を入力してください',
             'meeting.date.required' => '日付を入力してください。',
     	    'meeting.beginning_time.required' => '開始時間を入力してください。',
     	    'meeting.ending_time.required' => '終了時間を入力してください。',
