@@ -23569,7 +23569,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   jquery__WEBPACK_IMPORTED_MODULE_4___default()('.modal-close').on('click', function () {
     jquery__WEBPACK_IMPORTED_MODULE_4___default()('.modal').fadeOut();
-  }); //キャンバスにレンダリング
+  }); // キャンバスにレンダリング
 
   calendar.render();
 });

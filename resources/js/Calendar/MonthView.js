@@ -53,6 +53,6 @@ document.addEventListener('DOMContentLoaded', function(){
       $('.modal').fadeOut();
   });
     
-  //キャンバスにレンダリング
+  // キャンバスにレンダリング
   calendar.render();
 });
