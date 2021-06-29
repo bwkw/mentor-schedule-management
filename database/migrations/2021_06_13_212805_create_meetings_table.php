@@ -13,6 +13,7 @@ class CreateMeetingsTable extends Migration
             $table->bigIncrements('id');
             $table->string('mentor_name');
             $table->string('student_name');
+            $table->string('how_to');
             $table->date('date');
             $table->time('beginning_time');
             $table->time('ending_time');
