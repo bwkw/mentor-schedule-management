@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', function(){
   var calendarEl = document.getElementById('month_view');
   
   var calendar = new Calendar(calendarEl, {
-    //初期設定
+    // 初期設定
     plugins: [ dayGridPlugin ],
     initialView: 'dayGridMonth',
     
-    //イベントの編集可能に可能に
+    // イベントの編集可能に可能に
     editable: true,
     
     // カレンダーに表示する文字の言語選択
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function(){
       right: 'today next',
     },
     
-    //カレンダーの表示から"日"を削除
+    // カレンダーの表示から"日"を削除
     dayCellContent: function(e) {
         e.dayNumberText = e.dayNumberText.replace('日', '');
       },
@@ -53,8 +53,6 @@ document.addEventListener('DOMContentLoaded', function(){
       $('.modal').fadeOut();
   });
     
-
-
   //キャンバスにレンダリング
   calendar.render();
 });

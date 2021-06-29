@@ -23532,10 +23532,10 @@ __webpack_require__.r(__webpack_exports__);
 document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('month_view');
   var calendar = new _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__["Calendar"](calendarEl, {
-    //初期設定
+    // 初期設定
     plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__["default"]],
     initialView: 'dayGridMonth',
-    //イベントの編集可能に可能に
+    // イベントの編集可能に可能に
     editable: true,
     // カレンダーに表示する文字の言語選択
     locale: 'ja',
@@ -23545,7 +23545,7 @@ document.addEventListener('DOMContentLoaded', function () {
       center: 'title',
       right: 'today next'
     },
-    //カレンダーの表示から"日"を削除
+    // カレンダーの表示から"日"を削除
     dayCellContent: function dayCellContent(e) {
       e.dayNumberText = e.dayNumberText.replace('日', '');
     },
