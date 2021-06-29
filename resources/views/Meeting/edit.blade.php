@@ -26,8 +26,20 @@
                                 <input type="input" class="form-control" value="{{ $meeting->student_name }}" readonly>
                             </div>
                             <div class="form-group mb-4">
+                                <label>面談形式：</label>
+                                <select class="form-control" name="meeting[how_to]">
+                                    @if(($meeting->how_to)=="対面")
+                                        <option value="対面">対面</option>
+                                        <option value="オンライン">オンライン</option>
+                                    @else
+                                        <option value="オンライン" >オンライン</option>
+                                        <option value="対面">対面</option>
+                                    @endif
+                                </select>
+                            </div>
+                            <div class="form-group mb-4">
                                 <label for="date" class="col-form-label">日程</label>
-                                    <input type="date" class="form-control" name="meeting[date]" id="date" value="{{ $meeting->date }}">
+                                <input type="date" class="form-control" name="meeting[date]" id="date" value="{{ $meeting->date }}">
                             </div>
                             <div class="form-group mb-4">
                                 <label for="beginning_time" class="col-form-label">開始時間</label>
