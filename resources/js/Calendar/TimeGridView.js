@@ -94,8 +94,6 @@ document.addEventListener('DOMContentLoaded', function(){
   $('.modal-close').on('click',function(){
       $('.modal').fadeOut();
   });
-  
-  
 
   //キャンバスにレンダリング
   calendar.render();
