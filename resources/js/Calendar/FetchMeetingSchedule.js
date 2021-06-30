@@ -4,7 +4,7 @@ import $ from 'jquery';
 // dataに面談日を格納する(ajaxでデータを取得する)
 let data = "";
 
-//ajaxで取得したデータを加工するための変数定義
+// ajaxで取得したデータを加工するための変数定義
 let MeetingDate =[];
 let student_name = "";
 let how_to = "";
