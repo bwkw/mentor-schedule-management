@@ -12,7 +12,7 @@
 */
 
 // Auth認証からregisterを削除
-Auth::routes();
+Auth::routes(['register' => false]);
 
 // ホーム
 Route::get('/', 'HomeController@index');
