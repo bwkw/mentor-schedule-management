@@ -10992,7 +10992,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
  // dataに面談日を格納する(ajaxでデータを取得する)
 
-var data = ""; //ajaxで取得したデータを加工するための変数定義
+var data = ""; // ajaxで取得したデータを加工するための変数定義
 
 var MeetingDate = [];
 var student_name = "";
