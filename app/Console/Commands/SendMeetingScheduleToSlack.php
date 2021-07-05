@@ -71,7 +71,7 @@ class SendMeetingScheduleToSlack extends Command
             if(count($today_meetings_for_a_mentor)==0){
                 $text = $text;
             }else{
-                $text = $text."\n".$mentor_name."との面談者\n";
+                $text = $text."\n"."*".$mentor_name."*"."との面談者\n";
                 foreach($today_meetings_for_a_mentor as $today_meeting_for_a_mentor){
                     $student_name = $today_meeting_for_a_mentor -> student_name;
                     $student_slack_id = Student::where('slack_name', '=', $student_name) -> value('slack_id');
