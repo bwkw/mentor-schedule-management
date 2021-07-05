@@ -63,22 +63,21 @@
             </div>
         </div>
     
+    <!-- モーダル表示部分 -->
     <div class="modal modal-background">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">イベント情報</h5>
             </div>
             <div class="modal-body">
-                <div class="modal-body-start-time"></div>
-                <div class="modal-body-end-time"></div>
-                <div class="modal-body-title"></div>
+          　     <div class="modal-body-time"></div>
+          　     <div class="modal-body-title"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary modal-close" data-dismiss="modal">閉じる</button>
             </div>
         </div>
     </div>
-    
     
     <div class="col text-center mt-4 mb-4">
         <a href="/">
