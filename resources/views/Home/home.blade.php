@@ -10,9 +10,9 @@
             <div class="col-md-1">
             </div>
             
-            <div class="col-md-4 border">
+            <div class="col-md-4 border pt-3 pb-3">
                 
-                <div class="row justify-content-center mt-3">
+                <div class="row justify-content-center">
                     <a href="/meetings/register">
                         <button type="button" class="btn btn-primary btn-lg">面談の登録</button>
                     </a>
