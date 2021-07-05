@@ -23516,6 +23516,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var beginning_datetime = "";
+var ending_datetime = "";
+var beginning_time = "";
+var ending_time = "";
+var time = "";
 document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('month_view');
   var calendar = new _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__["Calendar"](calendarEl, {
@@ -23546,7 +23551,14 @@ document.addEventListener('DOMContentLoaded', function () {
   }); // イベントクリック時にモーダルを表示する
 
   function Modal(info) {
-    jquery__WEBPACK_IMPORTED_MODULE_4___default()('.modal').fadeIn();
+    jquery__WEBPACK_IMPORTED_MODULE_4___default()('.modal').fadeIn(); // イベントの時間とタイトルを取得
+
+    beginning_datetime = info.event.start.toString();
+    ending_datetime = info.event.end.toString();
+    beginning_time = beginning_datetime.match(/\d{2}:\d{2}:\d{2}/)[0];
+    ending_time = ending_datetime.match(/\d{2}:\d{2}:\d{2}/)[0];
+    time = beginning_time + "~" + ending_time;
+    jquery__WEBPACK_IMPORTED_MODULE_4___default()('.modal-body-time').html(time);
     jquery__WEBPACK_IMPORTED_MODULE_4___default()('.modal-body-title').html(info.event.title);
   }
 
