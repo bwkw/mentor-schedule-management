@@ -97,7 +97,7 @@ class SendMeetingScheduleToSlack extends Command
         $url = "https://slack.com/api/chat.postMessage";
         
         $send_fields = [
-                "channel" => "general",
+                "channel" => "面談リマインド",
                 ##"text" => "<!channel>\nテスト２",
                 "text" => $text
             
