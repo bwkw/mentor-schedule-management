@@ -24838,8 +24838,8 @@ document.addEventListener('DOMContentLoaded', function () {
           var week = ['(日)', '(月)', '(火)', '(水)', '(木)', '(金)', '(土)'][weekNum];
           return day + ' ' + week;
         },
-        //表示時間を10:00:00〜22:00:00にする
-        slotMinTime: '10:00:00',
+        // カレンダーの表示時間を12:00:00〜22:00:00にする
+        slotMinTime: '12:00:00',
         slotMaxTime: '22:00:00'
       }
     },
