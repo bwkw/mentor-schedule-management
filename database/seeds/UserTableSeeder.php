@@ -11,7 +11,7 @@ class UserTableSeeder extends Seeder
         DB::table('users')->truncate();
         
         // usersテーブルに値を格納
-        $mentors = \DB::table('mentors')->get();
+        $mentors = DB::table('mentors')->get();
         foreach($mentors as $mentor)
             DB::table('users')->insert(
                     ['name' => $mentor->slack_name,
