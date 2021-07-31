@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * 面談予定用モデルクラス
+ */
 class Meeting extends Model
 {
     // 指定したカラムに対してfillが出来るように$fillable定義
