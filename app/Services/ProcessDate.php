@@ -19,7 +19,8 @@ class ProcessDate
      * 
      * @param int $weekNo 対象の曜日番号
      */
-    public function dayOfTheWeek(int $weekNo){
+    public function dayOfTheWeek(int $weekNo)
+    {
         return self::WEEK[$weekNo];
     }
 }
