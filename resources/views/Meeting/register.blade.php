@@ -31,7 +31,7 @@
                             {{ csrf_field() }}
                             <div class="form-group mb-4">
                                 <label>メンター氏名(slack)：</label>
-                                <input type="input" class="form-control" name="meeting[mentor_name]" value="{{ $your_name }}" readonly>
+                                <input type="input" class="form-control" name="meeting[mentor_name]" value="{{ $yourName }}" readonly>
                             </div>
                             <div class="form-group mb-4">
                                 <label>生徒氏名(slack)：</label>
