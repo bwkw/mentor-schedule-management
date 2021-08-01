@@ -18,8 +18,8 @@ class MeetingController extends Controller
      */
     public function index()
     {
-        $your_meetings = User::find(Auth::user()->id)->meetings;
-        return $your_meetings;
+        $yourMeetings = User::find(Auth::user()->id)->meetings;
+        return $yourMeetings;
     }
     
     /**
@@ -27,8 +27,8 @@ class MeetingController extends Controller
      */
     public function store(Meeting $meeting, MeetingRegisterRequest $request)
     {
-        $input_meeting = $request['meeting'];
-        $meeting->fill($input_meeting)->save();
+        $inputMeeting = $request['meeting'];
+        $meeting->fill($inputMeeting)->save();
         return redirect('/');
     }
     
@@ -37,11 +37,11 @@ class MeetingController extends Controller
      */
     public function register()
     {
-        $your_name = Auth::user()->name;
+        $yourName = Auth::user()->name;
         $students = \DB::table('students')->get();
-        return view('Meeting.register') -> with(
+        return view('Meeting.register')->with(
             [
-                'your_name' => $your_name,
+                'yourName' => $yourName,
                 'students' => $students,
             ]
         );
@@ -61,7 +61,7 @@ class MeetingController extends Controller
      */
     public function edit(Meeting $meeting)
     {
-        return view('Meeting.edit') -> with( ['meeting' => $meeting] );
+        return view('Meeting.edit')->with( ['meeting' => $meeting] );
     }
     
     /**
@@ -69,8 +69,8 @@ class MeetingController extends Controller
      */
     public function update(Meeting $meeting, Request $request)
     {
-        $input_meeting_editted = $request['meeting'];
-        $meeting->fill($input_meeting_editted)->save();
+        $inputMeetinEditted = $request['meeting'];
+        $meeting->fill($inputMeetinEditted )->save();
         return redirect('/');
     }
 }
