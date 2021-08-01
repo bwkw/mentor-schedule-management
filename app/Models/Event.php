@@ -4,15 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * イベント予定用モデルクラス
+ */
 class Event extends Model
 {
-    // 指定したカラムに対してfillが出来るように$fillable定義
-    protected $fillable = [
-        'mentor_name',
-        'event_name',
-        'date',
-        'beginning_time',
-        'ending_time',
-        'user_id',
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at'
     ];
 }
