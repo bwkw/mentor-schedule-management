@@ -18,7 +18,7 @@
                             {{ csrf_field() }}
                             <div class="form-group mb-4">
                                 <label>メンター氏名(slack)：</label>
-                                <input type="input" class="form-control" name="event[mentor_name]" value="{{ $your_name }}" readonly>
+                                <input type="input" class="form-control" name="event[mentor_name]" value="{{ $yourName }}" readonly>
                             </div>
                             <div class="form-group mb-4">
                                 <label for="date" class="col-form-label">イベント名</label>
