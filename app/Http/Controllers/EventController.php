@@ -8,22 +8,23 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * イベント予定用コントローラークラス
+ */
 class EventController extends Controller
 {
-    // ログイン認証
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    // ユーザー情報に紐づいてeventsテーブルのデータを表示する
+    /**
+     * イベント日時を取得
+     */
     public function index()
     {
         $your_events = User::find(Auth::user()->id)->events;
         return $your_events;
     }
     
-    // eventsテーブルに予定を格納
+    /**
+     * イベント日時を保存
+     */
     public function store(Event $event, EventRegisterRequest $request)
     {
         $input_event = $request['event'];
@@ -31,7 +32,9 @@ class EventController extends Controller
         return redirect('/');
     }
     
-    // イベント日時登録ページ
+    /**
+     * イベント日時登録ページへの遷移
+     */
     public function register()
     {
         // ユーザー（メンター）と生徒の名前を取得
@@ -45,20 +48,26 @@ class EventController extends Controller
         );
     }
     
-    // イベント日時を削除
+    /**
+     * イベント日時を削除
+     */
     public function delete(Event $event)
     {
         $event -> delete();
         return redirect('/');
     }
     
-    // イベント日時編集ページへの遷移
+    /**
+     * イベント日時編集ページへの遷移
+     */
     public function edit(Event $event)
     {
         return view('Event.edit') -> with( ['event' => $event] );
     }
     
-    // 面談日時の更新
+    /**
+     * イベント日時の更新
+     */
     public function update(Event $event, Request $request)
     {
         $input_event_editted = $request['event'];
