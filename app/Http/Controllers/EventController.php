@@ -18,8 +18,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        $your_events = User::find(Auth::user()->id)->events;
-        return $your_events;
+        $yourEvents = User::find(Auth::user()->id)->events;
+        return $yourEvents;
     }
     
     /**
@@ -27,8 +27,8 @@ class EventController extends Controller
      */
     public function store(Event $event, EventRegisterRequest $request)
     {
-        $input_event = $request['event'];
-        $event->fill($input_event)->save();
+        $inputEvent = $request['event'];
+        $event->fill($inputEvent)->save();
         return redirect('/');
     }
     
@@ -37,13 +37,10 @@ class EventController extends Controller
      */
     public function register()
     {
-        // ユーザー（メンター）と生徒の名前を取得
-        $your_name = Auth::user()->name;
-        $students = \DB::table('students')->get();
-        return view('Event.register') -> with(
+        $yourName = Auth::user()->name;
+        return view('Event.register')->with(
             [
-                'your_name' => $your_name,
-                'students' => $students,
+                'yourName' => $yourName,
             ]
         );
     }
@@ -53,7 +50,7 @@ class EventController extends Controller
      */
     public function delete(Event $event)
     {
-        $event -> delete();
+        $event->delete();
         return redirect('/');
     }
     
@@ -62,7 +59,7 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        return view('Event.edit') -> with( ['event' => $event] );
+        return view('Event.edit')->with( ['event' => $event] );
     }
     
     /**
@@ -70,8 +67,8 @@ class EventController extends Controller
      */
     public function update(Event $event, Request $request)
     {
-        $input_event_editted = $request['event'];
-        $event->fill($input_event_editted)->save();
+        $inputEventEditted = $request['event'];
+        $event->fill($inputEventEditted)->save();
         return redirect('/');
     }
 }
