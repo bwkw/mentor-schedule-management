@@ -36,13 +36,17 @@ class User extends Authenticatable
      */
     protected $casts = [];
     
-    // meetingsテーブルとリレーションを定義
+    /**
+     * meetingsテーブルとのリレーション定義
+     */
     public function meetings(){
-        return $this -> hasMany('App\Models\Meeting');
+        return $this -> hasMany(Meeting::class);
     }
     
-    // eventsテーブルとリレーションを定義
+    /**
+     * eventsテーブルとのリレーション定義
+     */
     public function events(){
-        return $this -> hasMany('App\Models\Event');
+        return $this -> hasMany(Event::class);
     }
 }
