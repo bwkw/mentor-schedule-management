@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Event;
-use Illuminate\Http\Request;
 use App\Http\Requests\EventRegisterRequest;
+use App\Models\Event;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
