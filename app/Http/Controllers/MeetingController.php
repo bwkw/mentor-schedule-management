@@ -8,22 +8,23 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * 面談予定用コントローラークラス
+ */
 class MeetingController extends Controller
 {
-    // ログイン認証
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    // ユーザー情報に紐づいてmeetingsテーブルのデータを表示する
+    /**
+     * 面談日時を取得
+     */
     public function index()
     {
         $your_meetings = User::find(Auth::user()->id)->meetings;
         return $your_meetings;
     }
     
-    // meetingsテーブルに予定を格納
+    /**
+     * 面談日時を保存
+     */
     public function store(Meeting $meeting, MeetingRegisterRequest $request)
     {
         $input_meeting = $request['meeting'];
@@ -31,10 +32,11 @@ class MeetingController extends Controller
         return redirect('/');
     }
     
-    // 面談日時登録ページへの遷移
+    /**
+     * 面談日時登録ページへの遷移
+     */
     public function register()
     {
-        // ユーザー（メンター）と生徒の名前を取得
         $your_name = Auth::user()->name;
         $students = \DB::table('students')->get();
         return view('Meeting.register') -> with(
@@ -45,20 +47,26 @@ class MeetingController extends Controller
         );
     }
     
-    // 面談日時を削除
+    /**
+     * 面談日時の削除
+     */
     public function delete(Meeting $meeting)
     {
         $meeting -> delete();
         return redirect('/');
     }
     
-    // 面談日時編集ページへの遷移
+    /**
+     * 面談日時編集ページへの遷移
+     */
     public function edit(Meeting $meeting)
     {
         return view('Meeting.edit') -> with( ['meeting' => $meeting] );
     }
     
-    // 面談日時の更新
+    /**
+     * 面談日時の更新
+     */
     public function update(Meeting $meeting, Request $request)
     {
         $input_meeting_editted = $request['meeting'];
