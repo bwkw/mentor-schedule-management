@@ -16,6 +16,14 @@ class Meeting extends Model
     ];
     
     /**
+     * 「現在の日付より前」かつ、「現在の時刻より終了時間が前」の情報を削除
+     */
+    public function formerMeetingsDelete($nowDate, $nowTime)
+    {
+        Meeting::where('date', '<=', $nowDate)->where('ending_time', '<=', $nowTime)->delete();
+    }
+    
+    /**
      * 本日の面談情報を取得
      */
     public function getTodayMeetings($mentorName)
