@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Meeting;
-use Illuminate\Http\Request;
 use App\Http\Requests\MeetingRegisterRequest;
+use App\Models\Meeting;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MeetingController extends Controller
