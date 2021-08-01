@@ -16,15 +16,15 @@ class HomeController extends Controller
     /**
      * meetingsテーブルとeventsテーブルから今後の予定を取得し、時系列で並び替える
      */
-    public function index()
+    public function index(Meeting $meeting)
     {
         // 現在の日時を取得
         $nowDate = date('Y-m-d');
         $nowTime = date('H:i:s');
         
         // 「現在の日付より前」かつ、「現在の時刻より終了時間が前」の情報をmeetings,eventsテーブルから削除
-        Meeting::where('date', '<=', $nowDate)->where('ending_time', '<=', $nowTime)->delete();
-        Event::where('date', '<=', $nowDate)->where('ending_time', '<=', $nowTime)->delete();
+        $meeting->meetingsDelete($nowDate, $nowTime);
+        $event->eventsDelete($nowDate, $nowTime);
 
         // ユーザー情報に基づいて、meetingsテーブルとeventsテーブルから情報を取得
         $meetings = User::find(Auth::user()->id)->meetings;
