@@ -8,15 +8,14 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * ホーム用コントローラークラス
+ */
 class HomeController extends Controller
 {
-    //ログイン認証
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    //ホーム
+    /**
+     * meetingsテーブルとeventsテーブルから今後の予定を取得し、時系列で並び替える
+     */
     public function index()
     {
         // 現在の日時を取得
