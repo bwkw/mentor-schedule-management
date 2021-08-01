@@ -1,7 +1,7 @@
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import MeetingDate from './FetchMeetingSchedule';
-import EventDate from './FetchEventSchedule';
+import EventDate from './fetch-event-schedule';
+import MeetingDate from './fetch-meeting-schedule';
 import $ from 'jquery';
 
 
