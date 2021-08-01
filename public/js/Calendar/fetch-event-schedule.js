@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10979,9 +10979,9 @@ return jQuery;
 
 /***/ }),
 
-/***/ "./resources/js/Calendar/FetchMeetingSchedule.js":
+/***/ "./resources/js/Calendar/fetch-event-schedule.js":
 /*!*******************************************************!*\
-  !*** ./resources/js/Calendar/FetchMeetingSchedule.js ***!
+  !*** ./resources/js/Calendar/fetch-event-schedule.js ***!
   \*******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -10990,58 +10990,56 @@ return jQuery;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
- // dataに面談日を格納する(ajaxでデータを取得する)
+ // dataにイベント日を格納する(ajaxでデータを取得する)
 
 var data = ""; // ajaxで取得したデータを加工するための変数定義
 
-var MeetingDate = [];
-var student_name = "";
-var how_to = "";
+var EventDate = [];
+var event_name = "";
 var date = "";
 var beginning_time = "";
 var ending_time = "";
-var meeting_date = ""; // ajaxで取得したデータをグローバル変数として使うための関数を定義
+var event_date = ""; // ajaxで取得したデータをグローバル変数として使うための関数を定義
 
-function set_meeting_data(x) {
+function set_event_data(x) {
   data = x;
 } // ajaxでデータを取得する
 
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
   type: "GET",
-  url: "/meetings",
+  url: "/events",
   async: false,
   success: function success(data) {
-    set_meeting_data(data);
+    set_event_data(data);
   }
 }); // ajaxで取得したデータを加工する
 
 for (var i = 0; i < data.length; i++) {
-  student_name = data[i]["student_name"];
-  how_to = data[i]["how_to"];
+  event_name = data[i]["event_name"];
   date = data[i]["date"];
   beginning_time = data[i]["beginning_time"];
   ending_time = data[i]["ending_time"];
-  meeting_date = {
-    title: "".concat(student_name, "\u3068\u306E\u9762\u8AC7\uFF08").concat(how_to, "\uFF09"),
+  event_date = {
+    title: "".concat(event_name),
     start: "".concat(date, "T").concat(beginning_time),
     end: "".concat(date, "T").concat(ending_time)
   };
-  MeetingDate.push(meeting_date);
+  EventDate.push(event_date);
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (MeetingDate);
+/* harmony default export */ __webpack_exports__["default"] = (EventDate);
 
 /***/ }),
 
-/***/ 3:
+/***/ 1:
 /*!*************************************************************!*\
-  !*** multi ./resources/js/Calendar/FetchMeetingSchedule.js ***!
+  !*** multi ./resources/js/Calendar/fetch-event-schedule.js ***!
   \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/ec2-user/environment/Mentor_Schedule_Management/resources/js/Calendar/FetchMeetingSchedule.js */"./resources/js/Calendar/FetchMeetingSchedule.js");
+module.exports = __webpack_require__(/*! /home/ec2-user/environment/Mentor_Schedule_Management/resources/js/Calendar/fetch-event-schedule.js */"./resources/js/Calendar/fetch-event-schedule.js");
 
 
 /***/ })
