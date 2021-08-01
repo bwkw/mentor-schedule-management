@@ -1,8 +1,8 @@
 {
-    "/js/Calendar/FetchEventSchedule.js": "/js/Calendar/FetchEventSchedule.js",
-    "/js/Calendar/FetchMeetingSchedule.js": "/js/Calendar/FetchMeetingSchedule.js",
-    "/js/Calendar/MonthView.js": "/js/Calendar/MonthView.js",
-    "/js/Calendar/TimeGridView.js": "/js/Calendar/TimeGridView.js",
+    "/js/Calendar/fetch-event-schedule.js": "/js/Calendar/fetch-event-schedule.js",
+    "/js/Calendar/fetch-meeting-schedule.js": "/js/Calendar/fetch-meeting-schedule.js",
+    "/js/Calendar/month-view.js": "/js/Calendar/month-view.js",
+    "/js/Calendar/time-grid-view.js": "/js/Calendar/time-grid-view.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css"
 }
