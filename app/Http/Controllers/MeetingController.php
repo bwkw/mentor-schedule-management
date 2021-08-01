@@ -52,7 +52,7 @@ class MeetingController extends Controller
      */
     public function delete(Meeting $meeting)
     {
-        $meeting -> delete();
+        $meeting->delete();
         return redirect('/');
     }
     
