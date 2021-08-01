@@ -31,50 +31,45 @@
                         </div>
                         <ul class="list-group list-group-flush">
                             
-                            @if( count( $meetings_events_array )==0 )
+                            @if (count($meetingsEvents) == 0)
                                 <li class="list-group-item d-flex justify-content-around align-items-center">
                                     現在予定はありません
                                 </li>
                             @else
                                 <!-- 面談とイベントの表示をプロパティによって条件分岐 -->
-                                @foreach( $meetings_events_array as $key => $meeting_event )
-                                    @if( !empty( $meeting_event->student_name ) )
-                                    
+                                @for ($i = 0; $i < count($meetingsEvents); $i++)
+                                    @if (!empty($meetingsEvents[$i]["student_name"]))
                                         <li class="list-group-item d-flex justify-content-around align-items-center">
-                                            {{ $meeting_event->date }}：{{ $meeting_event->beginning_time }}〜{{$meeting_event->ending_time}}<br>
-                                            {{ $meeting_event->student_name }}との面談（{{ $meeting_event->how_to }}）
+                                            {{ $meetingsEvents[$i]["date"] }}：{{ $meetingsEvents[$i]["beginning_time"] }}〜{{ $meetingsEvents[$i]["ending_time"] }}<br>
+                                            {{ $meetingsEvents[$i]["student_name"] }}との面談（{{ $meetingsEvents[$i]["how_to"] }}）
                                             
-                                            <form action="/meetings/{{ $meeting_event->id }}" id="meetings_delete.{{ $meeting_event->id }}" method="post">
+                                            <form action="/meetings/{{ $meetingsEvents[$i]["id"] }}" id="meetingDelete{{ $meetingsEvents[$i]["id"] }}" method="post">
                                                 {{ csrf_field() }}
                                                 @method('DELETE')
-                                                <button type="button" class="btn btn-secondary" id="{{ $meeting_event->id }}" onclick="deleteMeetingSchedule(this.id);">削除</button>
+                                                <button type="button" class="btn btn-secondary meetingDeleteButton" id="{{ $meetingsEvents[$i]["id"] }}">削除</button>
                                             </form>
                                             
-                                            <a href="/meetings/{{ $meeting_event->id }}/edit">
+                                            <a href="/meetings/{{ $meetingsEvents[$i]["id"] }}/edit">
                                                 <button type="button" class="btn btn-secondary">編集</button>
                                             </a>
                                         </li>
-                                        
                                     @else
-                                    
                                         <li class="list-group-item d-flex justify-content-around align-items-center">
-                                            {{ $meeting_event->date }}：{{ $meeting_event->beginning_time }}〜{{ $meeting_event->ending_time }}<br>
-                                            {{ $meeting_event->event_name }}
+                                            {{ $meetingsEvents[$i]["date"] }}：{{ $meetingsEvents[$i]["beginning_time"] }}〜{{ $meetingsEvents[$i]["ending_time"] }}<br>
+                                            {{ $meetingsEvents[$i]["event_name"] }}
                                             
-                                            <form action="/events/{{ $meeting_event->id }}" id="events_delete.{{ $meeting_event->id }}" method="post">
+                                            <form action="/events/{{ $meetingsEvents[$i]["id"] }}" id="eventDelete{{ $meetingsEvents[$i]["id"] }}" method="post">
                                                 {{ csrf_field() }}
                                                 @method('DELETE')
-                                                <button type="button" class="btn btn-secondary" id="{{ $meeting_event->id }}" onclick="deleteEventSchedule(this.id);">削除</button>
-                                                <div style="display:none" id="event_id">{{ $meeting_event->id }}</div>
+                                                <button type="button" class="btn btn-secondary eventDeleteButton" id="{{ $meetingsEvents[$i]["id"] }}">削除</button>
                                             </form>
                                             
-                                            <a href="/events/{{$meeting_event->id}}/edit">
+                                            <a href="/events/{{ $meetingsEvents[$i]["id"] }}/edit">
                                                 <button type="button" class="btn btn-secondary">編集</button>
                                             </a>
                                         </li>
-                                        
                                     @endif
-                                @endforeach
+                                @endfor
                             @endif
                             
                         </ul>
@@ -114,6 +109,7 @@
     </div>
 
     <script src="{{ mix('js/Calendar/MonthView.js') }}"></script>
+    <script src="{{ mix('js/Calendar/FetchWorkSchedule.js') }}"></script>
     
     <script>
         /* 面談を削除する */
