@@ -10990,19 +10990,22 @@ return jQuery;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
- // dataにイベント日を格納する(ajaxでデータを取得する)
+ // ajaxで取得したイベントデータを格納するための変数定義
 
-var data = ""; // ajaxで取得したデータを加工するための変数定義
+var eventData = ""; // ajaxで取得したデータを加工するための変数定義
 
-var EventDate = [];
-var event_name = "";
+var eventName = "";
 var date = "";
-var beginning_time = "";
-var ending_time = "";
-var event_date = ""; // ajaxで取得したデータをグローバル変数として使うための関数を定義
+var beginningTime = "";
+var endingTime = "";
+var eventDetails = [];
+var eventDetail = "";
+/**
+ * ajaxで取得したデータをグローバル変数として使うための関数
+ */
 
-function set_event_data(x) {
-  data = x;
+function setEventData(x) {
+  eventData = x;
 } // ajaxでデータを取得する
 
 
@@ -11011,24 +11014,24 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
   url: "/events",
   async: false,
   success: function success(data) {
-    set_event_data(data);
+    setEventData(data);
   }
 }); // ajaxで取得したデータを加工する
 
-for (var i = 0; i < data.length; i++) {
-  event_name = data[i]["event_name"];
-  date = data[i]["date"];
-  beginning_time = data[i]["beginning_time"];
-  ending_time = data[i]["ending_time"];
-  event_date = {
-    title: "".concat(event_name),
-    start: "".concat(date, "T").concat(beginning_time),
-    end: "".concat(date, "T").concat(ending_time)
+for (var i = 0; i < eventData.length; i++) {
+  eventName = eventData[i]["event_name"];
+  date = eventData[i]["date"];
+  beginningTime = eventData[i]["beginning_time"];
+  endingTime = eventData[i]["ending_time"];
+  eventDetail = {
+    title: "".concat(eventName),
+    start: "".concat(date, "T").concat(beginningTime),
+    end: "".concat(date, "T").concat(endingTime)
   };
-  EventDate.push(event_date);
+  eventDetails.push(eventDetail);
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (EventDate);
+/* harmony default export */ __webpack_exports__["default"] = (eventDetails);
 
 /***/ }),
 

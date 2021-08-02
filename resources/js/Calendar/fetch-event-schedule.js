@@ -1,20 +1,22 @@
 import $ from 'jquery';
 
 
-// dataにイベント日を格納する(ajaxでデータを取得する)
-let data = "";
+// ajaxで取得したイベントデータを格納するための変数定義
+var eventData = "";
 
 // ajaxで取得したデータを加工するための変数定義
-let EventDate =[];
-let event_name = "";
-let date = "";
-let beginning_time = "";
-let ending_time = "";
-let event_date = "";
+var eventName = "";
+var date = "";
+var beginningTime = "";
+var endingTime = "";
+var eventDetails =[];
+var eventDetail = "";
 
-// ajaxで取得したデータをグローバル変数として使うための関数を定義
-function set_event_data(x){
-    data = x;
+/**
+ * ajaxで取得したデータをグローバル変数として使うための関数
+ */ 
+function setEventData(x){
+    eventData = x;
 }
 
 // ajaxでデータを取得する
@@ -23,24 +25,24 @@ $.ajax({
     url: "/events",
     async: false,
     success : function(data) {
-        set_event_data(data)
+        setEventData(data)
     }
 });
 
 // ajaxで取得したデータを加工する
-for (let i = 0; i < data.length; i++) {
-    event_name = data[i]["event_name"];
-    date = data[i]["date"];
-    beginning_time = data[i]["beginning_time"];
-    ending_time = data[i]["ending_time"];
-    event_date = 
+for (var i = 0; i < eventData.length; i++) {
+    eventName = eventData[i]["event_name"];
+    date = eventData[i]["date"];
+    beginningTime = eventData[i]["beginning_time"];
+    endingTime = eventData[i]["ending_time"];
+    eventDetail = 
         {
-            title:`${event_name}`,
-            start: `${date}T${beginning_time}`,
-            end: `${date}T${ending_time}`
+            title:`${eventName}`,
+            start: `${date}T${beginningTime}`,
+            end: `${date}T${endingTime}`
         }
-    EventDate.push(event_date);
+    eventDetails.push(eventDetail);
  }
  
 
-export default EventDate;
+export default eventDetails;
