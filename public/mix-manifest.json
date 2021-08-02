@@ -5,5 +5,6 @@
     "/js/Calendar/time-grid-view.js": "/js/Calendar/time-grid-view.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/js/chosen-select.js": "/js/chosen-select.js",
     "/js/delete-check.js": "/js/delete-check.js"
 }
