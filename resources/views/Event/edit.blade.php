@@ -45,7 +45,7 @@
                             <input type="time" class="form-control" name="event[ending_time]" value="{{ $event->ending_time }}">
                         </div>
                         
-                        <!-- ユーザーidをリレーション用に格納 -->
+                        {{-- ユーザーidをリレーション用に格納 --}}
                         <input type="hidden" name="event[user_id]" value="{{ Auth::user()->id }}">
                         
                         <div class="text-center mt-3 mb-2">
@@ -60,7 +60,7 @@
         </div>
           
         <div class="col-md-5" id="time_grid_view">
-                
+            {{-- タイムグリッド形式のカレンダー表示 --}} 
         </div>
         
         <div class="col-md-1">
