@@ -1,21 +1,23 @@
 import $ from 'jquery';
 
 
-// dataに面談日を格納する(ajaxでデータを取得する)
-let data = "";
+// ajaxで取得した面談データを格納するための変数定義
+var meetingData = "";
 
 // ajaxで取得したデータを加工するための変数定義
-let MeetingDate =[];
-let student_name = "";
-let how_to = "";
-let date = "";
-let beginning_time = "";
-let ending_time = "";
-let meeting_date = "";
+var studentName = "";
+var howTo = "";
+var date = "";
+var beginningTime = "";
+var endingTime = "";
+var meetingDetails =[];
+var meetingDetail = "";
 
-// ajaxで取得したデータをグローバル変数として使うための関数を定義
-function set_meeting_data(x){
-    data = x;
+/**
+ * ajaxで取得したデータをグローバル変数として使うための関数
+ */ 
+function setMeetingData(x){
+    meetingData = x;
 }
 
 // ajaxでデータを取得する
@@ -24,25 +26,26 @@ $.ajax({
     url: "/meetings",
     async: false,
     success : function(data) {
-        set_meeting_data(data)
+        setMeetingData(data)
     }
 });
 
 // ajaxで取得したデータを加工する
-for (let i = 0; i < data.length; i++) {
-    student_name = data[i]["student_name"];
-    how_to = data[i]["how_to"];
-    date = data[i]["date"];
-    beginning_time = data[i]["beginning_time"];
-    ending_time = data[i]["ending_time"];
-    meeting_date = 
+for (var i = 0; i < meetingData.length; i++) {
+    studentName = meetingData[i]["student_name"];
+    howTo = meetingData[i]["how_to"];
+    date = meetingData[i]["date"];
+    beginningTime = meetingData[i]["beginning_time"];
+    endingTime = meetingData[i]["ending_time"];
+    meetingDetail = 
         {
-            title:`${student_name}との面談（${how_to}）`,
-            start: `${date}T${beginning_time}`,
-            end: `${date}T${ending_time}`
+            title:`${studentName}との面談（${howTo}）`,
+            // fullcalendarのフォーマットに合わせ日付と時間の間に「T」を挿入
+            start: `${date}T${beginningTime}`,
+            end: `${date}T${endingTime}`
         }
-    MeetingDate.push(meeting_date);
+    meetingDetails.push(meetingDetail);
  }
  
 
-export default MeetingDate;
+export default meetingDetails;

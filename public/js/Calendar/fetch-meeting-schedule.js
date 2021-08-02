@@ -10990,20 +10990,23 @@ return jQuery;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
- // dataに面談日を格納する(ajaxでデータを取得する)
+ // ajaxで取得した面談データを格納するための変数定義
 
-var data = ""; // ajaxで取得したデータを加工するための変数定義
+var meetingData = ""; // ajaxで取得したデータを加工するための変数定義
 
-var MeetingDate = [];
-var student_name = "";
-var how_to = "";
+var studentName = "";
+var howTo = "";
 var date = "";
-var beginning_time = "";
-var ending_time = "";
-var meeting_date = ""; // ajaxで取得したデータをグローバル変数として使うための関数を定義
+var beginningTime = "";
+var endingTime = "";
+var meetingDetails = [];
+var meetingDetail = "";
+/**
+ * ajaxで取得したデータをグローバル変数として使うための関数
+ */
 
-function set_meeting_data(x) {
-  data = x;
+function setMeetingData(x) {
+  meetingData = x;
 } // ajaxでデータを取得する
 
 
@@ -11012,25 +11015,26 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
   url: "/meetings",
   async: false,
   success: function success(data) {
-    set_meeting_data(data);
+    setMeetingData(data);
   }
 }); // ajaxで取得したデータを加工する
 
-for (var i = 0; i < data.length; i++) {
-  student_name = data[i]["student_name"];
-  how_to = data[i]["how_to"];
-  date = data[i]["date"];
-  beginning_time = data[i]["beginning_time"];
-  ending_time = data[i]["ending_time"];
-  meeting_date = {
-    title: "".concat(student_name, "\u3068\u306E\u9762\u8AC7\uFF08").concat(how_to, "\uFF09"),
-    start: "".concat(date, "T").concat(beginning_time),
-    end: "".concat(date, "T").concat(ending_time)
+for (var i = 0; i < meetingData.length; i++) {
+  studentName = meetingData[i]["student_name"];
+  howTo = meetingData[i]["how_to"];
+  date = meetingData[i]["date"];
+  beginningTime = meetingData[i]["beginning_time"];
+  endingTime = meetingData[i]["ending_time"];
+  meetingDetail = {
+    title: "".concat(studentName, "\u3068\u306E\u9762\u8AC7\uFF08").concat(howTo, "\uFF09"),
+    // fullcalendarのフォーマットに合わせ日付と時間の間に「T」を挿入
+    start: "".concat(date, "T").concat(beginningTime),
+    end: "".concat(date, "T").concat(endingTime)
   };
-  MeetingDate.push(meeting_date);
+  meetingDetails.push(meetingDetail);
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (MeetingDate);
+/* harmony default export */ __webpack_exports__["default"] = (meetingDetails);
 
 /***/ }),
 
