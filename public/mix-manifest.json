@@ -4,5 +4,6 @@
     "/js/Calendar/month-view.js": "/js/Calendar/month-view.js",
     "/js/Calendar/time-grid-view.js": "/js/Calendar/time-grid-view.js",
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/js/delete-check.js": "/js/delete-check.js"
 }
