@@ -1,95 +1,103 @@
 @extends('layouts.app')
 
-@section('content')
-    <link rel='stylesheet' href="{{asset('css/home.css')}}">
-    <link rel='stylesheet' href="{{asset('css/modal.css')}}">
+@section('link')
+    <link rel='stylesheet' href="{{ asset('css/home.css') }}">
+    <link rel='stylesheet' href="{{ asset('css/modal.css') }}">
+@endsection
 
-    <div>
-        <div class="row mt-5">
-            
-            <div class="col-md-1">
-            </div>
-            
-            <div class="col-md-4 border pt-3 pb-3">
-                
-                <div class="row justify-content-center">
-                    <a href="/meetings/register">
-                        <button type="button" class="btn btn-primary btn-lg">面談の登録</button>
-                    </a>
-                    <div class="col-md-1"></div>
-                    <a href="/events/register">
-                        <button type="button" class="btn btn-warning btn-lg">イベントの登録</button>
-                    </a>
-                </div>
-                
-                <div>
-                    <div class="col-md-1"></div>
-                    
-                    <div class="card mt-4" >
-                        <div class="card-header">
-                            今後の予定
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            
-                            @if (count($meetingsEvents) == 0)
-                                <li class="list-group-item d-flex justify-content-around align-items-center">
-                                    現在予定はありません
-                                </li>
-                            @else
-                                <!-- 面談とイベントの表示をプロパティによって条件分岐 -->
-                                @for ($i = 0; $i < count($meetingsEvents); $i++)
-                                    @if (!empty($meetingsEvents[$i]["student_name"]))
-                                        <li class="list-group-item d-flex justify-content-around align-items-center">
-                                            {{ $meetingsEvents[$i]["date"] }}：{{ $meetingsEvents[$i]["beginning_time"] }}〜{{ $meetingsEvents[$i]["ending_time"] }}<br>
-                                            {{ $meetingsEvents[$i]["student_name"] }}との面談（{{ $meetingsEvents[$i]["how_to"] }}）
-                                            
-                                            <form action="/meetings/{{ $meetingsEvents[$i]["id"] }}" id="meetingDelete{{ $meetingsEvents[$i]["id"] }}" method="post">
-                                                {{ csrf_field() }}
-                                                @method('DELETE')
-                                                <button type="button" class="btn btn-secondary meetingDeleteButton" id="{{ $meetingsEvents[$i]["id"] }}">削除</button>
-                                            </form>
-                                            
-                                            <a href="/meetings/{{ $meetingsEvents[$i]["id"] }}/edit">
-                                                <button type="button" class="btn btn-secondary">編集</button>
-                                            </a>
-                                        </li>
-                                    @else
-                                        <li class="list-group-item d-flex justify-content-around align-items-center">
-                                            {{ $meetingsEvents[$i]["date"] }}：{{ $meetingsEvents[$i]["beginning_time"] }}〜{{ $meetingsEvents[$i]["ending_time"] }}<br>
-                                            {{ $meetingsEvents[$i]["event_name"] }}
-                                            
-                                            <form action="/events/{{ $meetingsEvents[$i]["id"] }}" id="eventDelete{{ $meetingsEvents[$i]["id"] }}" method="post">
-                                                {{ csrf_field() }}
-                                                @method('DELETE')
-                                                <button type="button" class="btn btn-secondary eventDeleteButton" id="{{ $meetingsEvents[$i]["id"] }}">削除</button>
-                                            </form>
-                                            
-                                            <a href="/events/{{ $meetingsEvents[$i]["id"] }}/edit">
-                                                <button type="button" class="btn btn-secondary">編集</button>
-                                            </a>
-                                        </li>
-                                    @endif
-                                @endfor
-                            @endif
-                            
-                        </ul>
-                    </div>
-                    
-                    <div class="col-md-1"></div>
-                </div>
-            </div>
-            
-            <div class="col-md-1">
-            </div>
-            
-            <div class="col-md-5" id="month_view">
-                <!-- 月単位で予定を表示する部分 -->
-            </div>
-            
-            <div class="col-md-1">
-            </div>
-            
+@section('script')
+    <script src="{{ mix('js/Calendar/month-view.js') }}"></script>
+    <script src="{{ mix('js/delete-check.js') }}"></script>
+@endsection
+
+@section('content')
+
+    <div class="row mt-5">
+        
+        <div class="col-md-1">
         </div>
+        
+        <div class="col-md-4 border pt-3 pb-3">
+            
+            <div class="row justify-content-center">
+                <a href="/meetings/register">
+                    <button type="button" class="btn btn-primary btn-lg">面談の登録</button>
+                </a>
+                <div class="col-md-1"></div>
+                <a href="/events/register">
+                    <button type="button" class="btn btn-warning btn-lg">イベントの登録</button>
+                </a>
+            </div>
+            
+            <div>
+                <div class="col-md-1">
+                </div>
+                
+                <div class="card mt-4" >
+                    <div class="card-header">
+                        今後の予定
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        
+                        @if (count($meetingsEvents) == 0)
+                            <li class="list-group-item d-flex justify-content-around align-items-center">
+                                現在予定はありません
+                            </li>
+                        @else
+                            <!-- 面談とイベントの表示をプロパティによって条件分岐 -->
+                            @for ($i = 0; $i < count($meetingsEvents); $i++)
+                                @if (!empty($meetingsEvents[$i]["student_name"]))
+                                    <li class="list-group-item d-flex justify-content-around align-items-center">
+                                        {{ $meetingsEvents[$i]["date"] }}：{{ $meetingsEvents[$i]["beginning_time"] }}〜{{ $meetingsEvents[$i]["ending_time"] }}<br>
+                                        {{ $meetingsEvents[$i]["student_name"] }}との面談（{{ $meetingsEvents[$i]["how_to"] }}）
+                                        
+                                        <form action="/meetings/{{ $meetingsEvents[$i]["id"] }}" id="meetingDelete{{ $meetingsEvents[$i]["id"] }}" method="post">
+                                            {{ csrf_field() }}
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-secondary meetingDeleteButton" id="{{ $meetingsEvents[$i]["id"] }}">削除</button>
+                                        </form>
+                                        
+                                        <a href="/meetings/{{ $meetingsEvents[$i]["id"] }}/edit">
+                                            <button type="button" class="btn btn-secondary">編集</button>
+                                        </a>
+                                    </li>
+                                @else
+                                    <li class="list-group-item d-flex justify-content-around align-items-center">
+                                        {{ $meetingsEvents[$i]["date"] }}：{{ $meetingsEvents[$i]["beginning_time"] }}〜{{ $meetingsEvents[$i]["ending_time"] }}<br>
+                                        {{ $meetingsEvents[$i]["event_name"] }}
+                                        
+                                        <form action="/events/{{ $meetingsEvents[$i]["id"] }}" id="eventDelete{{ $meetingsEvents[$i]["id"] }}" method="post">
+                                            {{ csrf_field() }}
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-secondary eventDeleteButton" id="{{ $meetingsEvents[$i]["id"] }}">削除</button>
+                                        </form>
+                                        
+                                        <a href="/events/{{ $meetingsEvents[$i]["id"] }}/edit">
+                                            <button type="button" class="btn btn-secondary">編集</button>
+                                        </a>
+                                    </li>
+                                @endif
+                            @endfor
+                        @endif
+                        
+                    </ul>
+                </div>
+                
+                <div class="col-md-1">
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-1">
+        </div>
+        
+        <div class="col-md-5" id="month_view">
+            <!-- 月単位で予定を表示する部分 -->
+        </div>
+        
+        <div class="col-md-1">
+        </div>
+        
     </div>
     
     <!-- モーダル表示部分 -->
@@ -107,24 +115,5 @@
             </div>
         </div>
     </div>
-
-    <script src="{{ mix('js/Calendar/MonthView.js') }}"></script>
-    <script src="{{ mix('js/Calendar/FetchWorkSchedule.js') }}"></script>
-    
-    <script>
-        /* 面談を削除する */
-        function deleteMeetingSchedule(meeting_id){
-            if (confirm('削除すると復元が出来ません。\n本当に削除しますか？')){
-                document.getElementById("meetings_delete." + meeting_id ).submit();
-            }
-        }
-        
-        /* イベントを削除する */
-        function deleteEventSchedule(event_id){
-            if (confirm('削除すると復元が出来ません。\n本当に削除しますか？')){
-                document.getElementById("events_delete." + event_id ).submit();
-            }
-        }
-    </script>
 
 @endsection
