@@ -44,7 +44,7 @@
                                 現在予定はありません
                             </li>
                         @else
-                            <!-- 面談とイベントの表示をプロパティによって条件分岐 -->
+                            {{-- 面談とイベントの表示をプロパティによって条件分岐 --}}
                             @for ($i = 0; $i < count($meetingsEvents); $i++)
                                 @if (!empty($meetingsEvents[$i]["student_name"]))
                                     <li class="list-group-item d-flex justify-content-around align-items-center">
@@ -92,7 +92,7 @@
         </div>
         
         <div class="col-md-5" id="month_view">
-            <!-- 月単位で予定を表示する部分 -->
+            {{-- MonthView形式のカレンダー表示 --}}
         </div>
         
         <div class="col-md-1">
@@ -100,7 +100,7 @@
         
     </div>
     
-    <!-- モーダル表示部分 -->
+    {{-- モーダル表示部分 --}}
     <div class="modal modal-background">
         <div class="modal-content">
             <div class="modal-header">
