@@ -1,18 +1,21 @@
+import $ from 'jquery';
 import { Calendar } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import EventDate from './fetch-event-schedule';
-import MeetingDate from './fetch-meeting-schedule';
-import $ from 'jquery';
+import eventDetails from './fetch-event-schedule';
+import meetingDetails from './fetch-meeting-schedule';
 
 
-let beginning_datetime = "";
-let ending_datetime = "";
-let beginning_time = "";
-let ending_time = "";
-let time = "";
+var beginningDatetime = "";
+var endingDatetime = "";
+var beginningTime = "";
+var endingTime = "";
+var time = "";
 
-document.addEventListener('DOMContentLoaded', function(){
-    var calendarEl = document.getElementById('time_grid_view');
+/**
+ * タイムグリッド形式のカレンダー作成
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('timeGridView');
   
     var calendar = new Calendar(calendarEl, {
       
@@ -36,81 +39,88 @@ document.addEventListener('DOMContentLoaded', function(){
         // カレンダーの見出しの文言から月を削除し、日にちだけに
         views: {
             timeGridWeek: {
-                titleFormat: function (date) {
-                    const startMonth = date.start.month + 1;
-                    const endMonth = date.end.month + 1;
+                titleFormat: function(date) {
+                    var startMonth = date.start.month + 1;
+                    var endMonth = date.end.month + 1;
         
-                // 1週間のうちに月をまたぐかどうかの分岐処理
-                if (startMonth === endMonth) {
-                    return startMonth + '月';
-                } else {
-                    return startMonth + '月～' + endMonth + '月'; 
-                }
-            },
+                    // 1週間のうちに月をまたぐかどうかの分岐処理
+                    if (startMonth === endMonth) {
+                        return startMonth + '月';
+                    } else {
+                        return startMonth + '月～' + endMonth + '月'; 
+                    }
+                },
+            
+                // カレンダーの日付と曜日部分をカスタム
+                dayHeaderFormat: function(date) {
+                    var day = date.date.day;
+                    var weekNum = date.date.marker.getDay();
+                    var week = ['(日)', '(月)', '(火)', '(水)', '(木)', '(金)', '(土)'][weekNum];
+            
+                    return day + ' ' + week;
+                },
+            
+                // カレンダーの表示時間を12:00:00〜22:00:00にする
+                slotMinTime: '12:00:00',
+                slotMaxTime: '22:00:00'
+            }
+        },
+    
+        // 現在時刻を可視化
+        nowIndicator: true,
         
-            // カレンダーの日付と曜日部分をカスタム
-            dayHeaderFormat: function (date) {
-                const day = date.date.day;
-                const weekNum = date.date.marker.getDay();
-                const week = ['(日)', '(月)', '(火)', '(水)', '(木)', '(金)', '(土)'][weekNum];
+        // 表示の時間区切りを10分毎にする
+        slotDuration: '00:10:00',
+    
+        // 面談・イベント日程の追加
+        events:
+            meetingDetails.concat(eventDetails),
         
-                return day + ' ' + week;
-            },
+        /**
+         * イベントがクリックされた時、Modal関数を呼ぶ
+         */ 
+        eventClick: function(info) {
+            info.jsEvent.preventDefault();
+            Modal(info);
+        },
         
-            // カレンダーの表示時間を12:00:00〜22:00:00にする
-            slotMinTime: '12:00:00',
-            slotMaxTime: '22:00:00'
+        /**
+         * 面談と他のイベントの色を区別する
+         */
+        eventDidMount: function (info) {
+            if (info.event.title.match(/面談/)){
+              info.el.style.background='#6699FF';
+              info.el.style.border='#6699FF';
+            } else {
+              info.el.style.background='#FFCC00';
+              info.el.style.border='#FFCC00';
+            }
         }
-    },
-    
-    // 現在時刻を可視化
-    nowIndicator: true,
-    
-    // 表示の時間区切りを10分毎にする
-    slotDuration: '00:10:00',
-
-    // 面談・イベント日程の追加（配列を合体）
-    events:
-        MeetingDate.concat(EventDate),
-    
-    // イベントがクリックされた時、Modal関数を呼ぶ
-    eventClick: function(info) {
-        info.jsEvent.preventDefault();
-        Modal(info);
-    },
-    
-    // 面談と他のイベントの色を区別する
-    eventDidMount: function (info) {
-        if (info.event.title.match(/面談/)){
-          info.el.style.background='#6699FF';
-          info.el.style.border='#6699FF';
-        }else{
-          info.el.style.background='#FFCC00';
-          info.el.style.border='#FFCC00';
-        }
-    }
-  });
+    });
   
-  // イベントクリック時にモーダルを表示する
-  function Modal(info) {
-      $('.modal').fadeIn();
+    /**
+     * イベントクリック時にモーダルを表示する
+     */
+    function Modal(info) {
+        $('.modal').fadeIn();
       
-      // イベントの時間とタイトルを取得
-      beginning_datetime = info.event.start.toString();
-      ending_datetime = info.event.end.toString();
-      beginning_time = beginning_datetime.match(/\d{2}:\d{2}:\d{2}/)[0];
-      ending_time = ending_datetime.match(/\d{2}:\d{2}:\d{2}/)[0];
-      time = beginning_time + "~" + ending_time;
-      $('.modal-body-time').html(time);
-      $('.modal-body-title').html(info.event.title);
-  };
+        // イベントの時間とタイトルを取得
+        beginningDatetime = info.event.start.toString();
+        endingDatetime = info.event.end.toString();
+        beginningTime = beginningDatetime.match(/\d{2}:\d{2}:\d{2}/)[0];
+        endingTime = endingDatetime.match(/\d{2}:\d{2}:\d{2}/)[0];
+        time = beginningTime + "~" + endingTime;
+        $('.modal-body-time').html(time);
+        $('.modal-body-title').html(info.event.title);
+    };
     
-  // モーダルのCloseボタンを押した時に、モーダルを非表示にする
-  $('.modal-close').on('click',function(){
-      $('.modal').fadeOut();
-  });
+    /**
+     * モーダルのCloseボタンを押した時に、モーダルを非表示にする
+     */ 
+    $('.modal-close').on('click', function() {
+        $('.modal').fadeOut();
+    });
 
-  //キャンバスにレンダリング
-  calendar.render();
+    //キャンバスにレンダリング
+    calendar.render();
 });
-
