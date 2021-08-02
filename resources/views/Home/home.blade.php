@@ -91,7 +91,7 @@
         <div class="col-md-1">
         </div>
         
-        <div class="col-md-5" id="month_view">
+        <div class="col-md-5" id="monthView">
             {{-- MonthView形式のカレンダー表示 --}}
         </div>
         
