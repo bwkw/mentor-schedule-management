@@ -35,12 +35,12 @@
                         <div class="form-group mb-4">
                             <label>面談形式</label>
                             <select class="form-control" name="meeting[how_to]">
-                                @if(($meeting->how_to)=="対面")
-                                    <option value="対面">対面</option>
+                                @if (($meeting->how_to) == "対面")
+                                    <option value="対面" selected>対面</option>
                                     <option value="オンライン">オンライン</option>
                                 @else
-                                    <option value="オンライン" >オンライン</option>
                                     <option value="対面">対面</option>
+                                    <option value="オンライン" selected>オンライン</option>
                                 @endif
                             </select>
                         </div>
