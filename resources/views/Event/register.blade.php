@@ -62,7 +62,7 @@
         <div class="col-md-1">
         </div>
           
-        <div class="col-md-5" id="time_grid_view">
+        <div class="col-md-5" id="timeGridView">
             {{-- タイムグリッド形式のカレンダー表示 --}}
         </div>
         
