@@ -1,18 +1,21 @@
+import $ from 'jquery';
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import EventDate from './fetch-event-schedule';
-import MeetingDate from './fetch-meeting-schedule';
-import $ from 'jquery';
+import eventDetails from './fetch-event-schedule';
+import meetingDetails from './fetch-meeting-schedule';
 
 
-let beginning_datetime = "";
-let ending_datetime = "";
-let beginning_time = "";
-let ending_time = "";
-let time = "";
+var beginningDatetime = "";
+var endingDatetime = "";
+var beginningTime = "";
+var endingTime = "";
+var time = "";
 
-document.addEventListener('DOMContentLoaded', function(){
-    var calendarEl = document.getElementById('month_view');
+/**
+ * MonthView形式のカレンダー作成
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('monthView');
     
     var calendar = new Calendar(calendarEl, {
       
@@ -33,39 +36,46 @@ document.addEventListener('DOMContentLoaded', function(){
             right: 'today next',
         },
         
-        // カレンダーの表示から"日"を削除
+        /**
+         * カレンダーの表示から"日"を削除
+         */ 
         dayCellContent: function(e) {
             e.dayNumberText = e.dayNumberText.replace('日', '');
         },
           
-        // 面談・イベント日程の追加（配列を合体）
+        // 面談・イベント日程の追加
         events:
-            MeetingDate.concat(EventDate),
+            meetingDetails.concat(eventDetails),
         
-        // イベントがクリックされた時、Modal関数を呼ぶ
+        /**
+         * イベントがクリックされた時、Modal関数を呼ぶ
+         */
         eventClick: function(info) {
             info.jsEvent.preventDefault();
             Modal(info);
-        },
-      
+        }
     });
   
-    // イベントクリック時にモーダルを表示する
+    /**
+     * イベントクリック時にモーダルを表示する
+     */
     function Modal(info) {
         $('.modal').fadeIn();
         
         // イベントの時間とタイトルを取得
-        beginning_datetime = info.event.start.toString();
-        ending_datetime = info.event.end.toString();
-        beginning_time = beginning_datetime.match(/\d{2}:\d{2}:\d{2}/)[0];
-        ending_time = ending_datetime.match(/\d{2}:\d{2}:\d{2}/)[0];
-        time = beginning_time + "~" + ending_time;
+        beginningDatetime = info.event.start.toString();
+        endingDatetime = info.event.end.toString();
+        beginningTime = beginningDatetime.match(/\d{2}:\d{2}:\d{2}/)[0];
+        endingTime = endingDatetime.match(/\d{2}:\d{2}:\d{2}/)[0];
+        time = beginningTime + "~" + endingTime;
         $('.modal-body-time').html(time);
         $('.modal-body-title').html(info.event.title);
     };
     
-    // モーダルのCloseボタンを押した時に、モーダルを非表示にする
-    $('.modal-close').on('click',function(){
+    /**
+     * モーダルのCloseボタンを押した時に、モーダルを非表示にする
+     */ 
+    $('.modal-close').on('click', function() {
       $('.modal').fadeOut();
     });
     
