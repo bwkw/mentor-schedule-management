@@ -44,17 +44,29 @@ Heroku（ https://protected-meadow-92642.herokuapp.com/login ）
 # 注力した機能
 - ホーム画面では二つのテーブル（meetingsテーブル（面談予定格納テーブル）とeventsテーブル（イベント予定格納テーブル））の情報を取り出し、予定の日付・開始時間・終了時間で並び替えるようにしたことで、
 直近の予定を分かりやすくしました
-<img src="img/home.png" title="ホーム画面" width="80%">
+
+<p align="center">
+    <img src="img/home.png" title="ホーム画面" width="80%">
+</p>
 
 - 予定入力フォームとカレンダーを1ページの左右に表示させることで、既存の予定を確認しながら、新しい予定を入力できるようにしました
-<img src="img/register.png" title="面談登録ページ" width="80%">
+
+<p align="center">
+    <img src="img/register.png" title="面談登録ページ" width="80%">
+</p>
 
 - 生徒名の入力フォームは、生徒数が多いため検索機能をつけました
-<img src="img/search.png" title="生徒検索機能" width="80%">
+
+<p align="center">
+    <img src="img/search.png" title="生徒検索機能" width="80%">
+</p>
 
 - 面談予定についてはslackへの自動送信機能を付けました（毎日AM11:00に自動送信）\
 （Slack APIとHeroku Schedulerの利用）
-<img src="img/slack.png" title="slack画面" width="80%">
+
+<p align="center">
+    <img src="img/slack.png" title="slack画面" width="80%">
+</p>
 
 # テーブル定義
 ### usersテーブル
