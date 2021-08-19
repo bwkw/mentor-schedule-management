@@ -1,96 +1,103 @@
-# Mentor_schedule_management
-メンター（ユーザー）のスケジュールを管理し、一部スケジュールのslackへの自動送信機能を持つアプリです。
+# Mentor_Schedule_Management
+※ 本アプリは、インターン先で運用しているアプリであるためテストを行うことが出来ません。
+
+本アプリは、「Slackへの自動リマインド機能を兼ね備えたカレンダーアプリ」です。
 ユーザーはイベントと面談をスケジュールとして登録することが出来、面談予定に関しては、登録された情報を基に、slackへの自動送信を毎日AM11:00にメンション付きで行います。
 (iPad以上のサイズ（画面幅>=768px）の端末での利用を考えているため、画面幅>=768pxの端末でのレスポンシブ対応のみされております。)
 
 
 # 作成した背景/目的
 私は、インターンの一環として、プログラミングスクールのメンターを務めております。
-そちらでは、メンターが担当の生徒と週に一回面談を実施し、各生徒の進捗把握を行なっております。
+そちらでは、メンターが担当生徒と週に一回面談を実施し、各生徒の進捗把握を行なっております。
 元々は、メンターが担当生徒との面談日時を決定する際に、メンター各自がGoogleカレンダーで自分の空いている時間を確認し、
-Googleカレンダーに記入、面談当日になれば、そのGoogleカレンダーを確認し、slackで面談のリマインドを行なっていました。
+Googleカレンダーに記入、面談当日になれば、そのGoogleカレンダーを確認し、Slackで面談のリマインドを行なっていました。
 この問題点としては、「工程が多く、メンター側が手間であること」、「メンターが面談当日のリマインドを失念し、生徒が面談を忘れる可能性があること（実際、過去に起きました）」が挙げられます。
-そこで、webページ上で予定を一括で管理出来るようにし、面談予定に関しては当日にslackに自動リマインドが行われる「スケジュール管理アプリ」を作成しました。
+そこで、webページ上で予定を一括で管理出来、面談予定に関しては当日にSlackに自動リマインドが行われる「カレンダーアプリ」を作成しました。
+
+# 開発環境
+## OS
+macOS Big Sur バージョン11.4
+
+## フロントエンド
+・HTML
+・CSS
+・Bootstrap
+・jQuery
+
+## バックエンド
+・PHP
+・Laravel
+
+## データベース
+・MySQL
+
+## インフラ
+・AWS(EC2)
+
+## デプロイ
+・Heroku
 
 
+## 注力した機能
+・ホーム画面では二つのテーブル（meetingsテーブル（面談予定格納テーブル）とeventsテーブル（イベント予定格納テーブル））の情報を取り出し、予定の日付・開始時間・終了時間で並び替えるようにしたことで、
+直近の予定を分かりやすくしました。
 
+・予定入力フォームとカレンダーを1ページの左右に表示させることで、既存の予定を確認しながら、新しい予定を入力できるようにしました。
 
+・面談予定についてはslackへの自動送信機能を付けました（毎日AM11:00に自動送信）(Slack APIとHeroku Schedulerの利用)
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# テーブル定義
+### usersテーブル
+|  カラム名  |  データ型  |  詳細  |
+| ---- | ---- | ---- |
+|  id  |  bigint(20) unsigned  |  ID  |
+|  name  |  varchar(255)  |  ユーザー名  |
+|  password  |  varchar(255)  |  パスワード  |
+|  rememberToken  |  varchar(100)  |  ログイン状態を保持  |
+|  created_at  |  timestamp  |  データ作成時間  |
+|  updated_at |  timestamp  |  データ更新時間  |
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+### mentorsテーブル
+|  カラム名  |  データ型  |  詳細  |
+| ---- | ---- | ---- |
+|  id  |  bigint(20) unsigned  |  ID  |
+|  slack_id  |  varchar(50)  |  slackのID  |
+|  slack_name  |  varchar(50)  |  slackでの表示名  |
+|  created_at  |  timestamp  |  データ作成時間  |
+|  updated_at |  timestamp  |  データ更新時間  |
 
-## About Laravel
+### studentsテーブル
+|  カラム名  |  データ型  |  詳細  |
+| ---- | ---- | ---- |
+|  id  |  bigint(20) unsigned  |  ID  |
+|  slack_id  |  varchar(50)  |  slackのID（メンション用カラム）  |
+|  slack_name  |  varchar(50)  |  slackでの表示名  |
+|  created_at  |  timestamp  |  データ作成時間  |
+|  updated_at |  timestamp  |  データ更新時間  |
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### meetingsテーブル
+|  カラム名  |  データ型  |  詳細  |
+| ---- | ---- | ---- |
+|  id  |  bigint(20) unsigned  |  ID  |
+|  mentor_name  |  varchar(255)  |  メンター名  |
+|  student_name  |  varchar(255)  |  生徒名  |
+|  how_to  |  varchar(255)  |  面談方法  |
+|  date  |  date  |  面談日付  |
+|  beginning_time  |  time  |  面談開始時間  |
+|  ending_time  |  time  |  面談終了時間  |
+|  user_id  |  int(11)  |  usersテーブルとの連携用ID  |
+|  created_at  |  timestamp  |  データ作成時間  |
+|  updated_at |  timestamp  |  データ更新時間  |
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### eventsテーブル
+|  カラム名  |  データ型  |  詳細  |
+| ---- | ---- | ---- |
+|  id  |  bigint(20) unsigned  |  ID  |
+|  mentor_name  |  varchar(255)  |  メンター名  |
+|  event_name  |  varchar(255)  |  イベント名（面談以外）  |
+|  date  |  date  |  イベント日付  |
+|  beginning_time  |  time  |  イベント開始時間  |
+|  ending_time  |  time  |  イベント終了時間  |
+|  user_id  |  int(11)  |  usersテーブルとの連携用ID  |
+|  created_at  |  timestamp  |  データ作成時間  |
+|  updated_at |  timestamp  |  データ更新時間  |
