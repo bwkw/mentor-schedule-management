@@ -7,7 +7,7 @@
 （iPad以上のサイズ（画面幅>=768px）の端末での利用を考えているため、画面幅>=768pxの端末でのレスポンシブ対応のみされております。）
 
 
-# 作成した背景/目的
+## 作成した背景/目的
 私は、インターンの一環として、プログラミングスクールのメンターを務めております。
 そちらでは、メンターが担当生徒と週に一回面談を実施し、各生徒の進捗把握を行なっております。
 元々は、メンターが担当生徒との面談日時を決定する際に、メンター各自がGoogleカレンダーで自分の空いている時間を確認し、
@@ -16,34 +16,33 @@ Googleカレンダーに記入、面談当日になれば、そのGoogleカレ�
 そこで、webページ上で予定を一括で管理出来、面談予定に関しては当日にSlackに自動リマインドが行われる「カレンダーアプリ」を作成しました。
 
 
-# 開発環境
-### OS
+## 開発環境
+#### OS
 macOS Big Sur バージョン11.4
 
-### フロントエンド
+#### フロントエンド
 - HTML/CSS
 - Bootstrap v4.0.0
 - jQuery v3.2
 - FullCalendar v5.7.2
 - Chosen v1.8.7
 
-### バックエンド
+#### バックエンド
 - PHP v7.3.28
 - Laravel v6.20.27
 
-### データベース
+#### データベース
 MariaDB v10.2
 
-### インフラ
+#### インフラ
 AWS(EC2)
 
-### デプロイ
+#### デプロイ
 Heroku（ https://protected-meadow-92642.herokuapp.com/login ）
 
 
-# 注力した機能
-- ホーム画面では二つのテーブル（meetingsテーブル（面談予定格納テーブル）とeventsテーブル（イベント予定格納テーブル））の情報を取り出し、予定の日付・開始時間・終了時間で並び替えるようにしたことで、
-直近の予定を分かりやすくしました
+## 注力した機能
+- ホーム画面では予定の日付・開始時間・終了時間で並び替えることで、直近の予定を分かりやすくしました
 
 <p align="center">
     <img src="img/home.png" title="ホーム画面" width="80%">
@@ -55,7 +54,7 @@ Heroku（ https://protected-meadow-92642.herokuapp.com/login ）
     <img src="img/register.png" title="面談登録ページ" width="80%">
 </p>
 
-- 生徒名の入力フォームは、生徒数が多いため検索機能をつけました
+- 生徒氏名の入力フォームは、生徒数が多いため検索機能をつけました
 
 <p align="center">
     <img src="img/search.png" title="生徒検索機能" width="80%">
@@ -68,8 +67,8 @@ Heroku（ https://protected-meadow-92642.herokuapp.com/login ）
     <img src="img/slack.png" title="slack画面" width="80%">
 </p>
 
-# テーブル定義
-### usersテーブル
+## テーブル定義
+#### usersテーブル
 |  カラム名  |  データ型  |  詳細  |
 | ---- | ---- | ---- |
 |  id  |  bigint(20) unsigned  |  ID  |
@@ -79,7 +78,7 @@ Heroku（ https://protected-meadow-92642.herokuapp.com/login ）
 |  created_at  |  timestamp  |  データ作成時間  |
 |  updated_at |  timestamp  |  データ更新時間  |
 
-### mentorsテーブル
+#### mentorsテーブル
 |  カラム名  |  データ型  |  詳細  |
 | ---- | ---- | ---- |
 |  id  |  bigint(20) unsigned  |  ID  |
@@ -88,7 +87,7 @@ Heroku（ https://protected-meadow-92642.herokuapp.com/login ）
 |  created_at  |  timestamp  |  データ作成時間  |
 |  updated_at |  timestamp  |  データ更新時間  |
 
-### studentsテーブル
+#### studentsテーブル
 |  カラム名  |  データ型  |  詳細  |
 | ---- | ---- | ---- |
 |  id  |  bigint(20) unsigned  |  ID  |
@@ -97,7 +96,7 @@ Heroku（ https://protected-meadow-92642.herokuapp.com/login ）
 |  created_at  |  timestamp  |  データ作成時間  |
 |  updated_at |  timestamp  |  データ更新時間  |
 
-### meetingsテーブル
+#### meetingsテーブル
 |  カラム名  |  データ型  |  詳細  |
 | ---- | ---- | ---- |
 |  id  |  bigint(20) unsigned  |  ID  |
@@ -111,7 +110,7 @@ Heroku（ https://protected-meadow-92642.herokuapp.com/login ）
 |  created_at  |  timestamp  |  データ作成時間  |
 |  updated_at |  timestamp  |  データ更新時間  |
 
-### eventsテーブル
+#### eventsテーブル
 |  カラム名  |  データ型  |  詳細  |
 | ---- | ---- | ---- |
 |  id  |  bigint(20) unsigned  |  ID  |
