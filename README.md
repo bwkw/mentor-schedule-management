@@ -35,7 +35,7 @@ macOS Big Sur バージョン11.4
 MariaDB v10.2
 
 #### インフラ
-AWS(EC2)
+AWS（EC2）
 
 #### デプロイ
 Heroku（ https://protected-meadow-92642.herokuapp.com/login ）
@@ -60,11 +60,11 @@ Heroku（ https://protected-meadow-92642.herokuapp.com/login ）
     <img src="img/search.png" title="生徒検索機能" width="80%">
 </p>
 
-- 面談予定についてはslackへの自動送信機能を付けました（毎日AM11:00に自動送信）\
+- 面談予定についてはSlackへの自動送信機能を付けました（毎日AM11:00に自動送信）\
 （Slack APIとHeroku Schedulerの利用）
 
 <p align="center">
-    <img src="img/slack.png" title="slack画面" width="80%">
+    <img src="img/slack.png" title="Slack画面" width="80%">
 </p>
 
 ## テーブル定義
