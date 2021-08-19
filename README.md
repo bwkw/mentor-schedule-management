@@ -37,7 +37,7 @@ MariaDB v10.2
 AWS(EC2)
 
 #### デプロイ
-Heroku（https://protected-meadow-92642.herokuapp.com/login）
+Heroku（ https://protected-meadow-92642.herokuapp.com/login ）
 
 
 # 注力した機能
