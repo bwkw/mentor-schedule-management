@@ -54,7 +54,7 @@ Heroku（ https://protected-meadow-92642.herokuapp.com/login ）
     <img src="img/register.png" title="面談登録ページ" width="80%">
 </p>
 
-- 生徒氏名の入力フォームは、生徒数が多いため検索機能をつけました
+- 生徒数が多いため、生徒氏名の入力フォームに検索機能をつけました
 
 <p align="center">
     <img src="img/search.png" title="生徒検索機能" width="80%">
