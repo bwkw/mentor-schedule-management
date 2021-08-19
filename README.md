@@ -1,7 +1,7 @@
 # Mentor_Schedule_Management
 ※ 本アプリは、インターン先で運用しているアプリであるためテストを行うことが出来ません。
 
-本アプリは、「Slackへの自動リマインド機能を兼ね備えたカレンダーアプリ」です。
+本アプリは、「Slackへの自動リマインド機能を兼ね備えたカレンダーアプリ」です。\
 ユーザーはイベントと面談をスケジュールとして登録することが出来、面談予定に関しては、登録された情報を基に、slackへの自動送信を毎日AM11:00にメンション付きで行います。
 (iPad以上のサイズ（画面幅>=768px）の端末での利用を考えているため、画面幅>=768pxの端末でのレスポンシブ対応のみされております。)
 
@@ -15,26 +15,26 @@ Googleカレンダーに記入、面談当日になれば、そのGoogleカレ�
 そこで、webページ上で予定を一括で管理出来、面談予定に関しては当日にSlackに自動リマインドが行われる「カレンダーアプリ」を作成しました。
 
 # 開発環境
-## OS
+#### OS
 macOS Big Sur バージョン11.4
 
-## フロントエンド
+#### フロントエンド
 ・HTML
 ・CSS
 ・Bootstrap
 ・jQuery
 
-## バックエンド
+#### バックエンド
 ・PHP
 ・Laravel
 
-## データベース
+#### データベース
 ・MySQL
 
-## インフラ
+#### インフラ
 ・AWS(EC2)
 
-## デプロイ
+#### デプロイ
 ・Heroku
 
 
@@ -47,7 +47,7 @@ macOS Big Sur バージョン11.4
 ・面談予定についてはslackへの自動送信機能を付けました（毎日AM11:00に自動送信）(Slack APIとHeroku Schedulerの利用)
 
 # テーブル定義
-### usersテーブル
+#### usersテーブル
 |  カラム名  |  データ型  |  詳細  |
 | ---- | ---- | ---- |
 |  id  |  bigint(20) unsigned  |  ID  |
@@ -57,7 +57,7 @@ macOS Big Sur バージョン11.4
 |  created_at  |  timestamp  |  データ作成時間  |
 |  updated_at |  timestamp  |  データ更新時間  |
 
-### mentorsテーブル
+#### mentorsテーブル
 |  カラム名  |  データ型  |  詳細  |
 | ---- | ---- | ---- |
 |  id  |  bigint(20) unsigned  |  ID  |
@@ -66,7 +66,7 @@ macOS Big Sur バージョン11.4
 |  created_at  |  timestamp  |  データ作成時間  |
 |  updated_at |  timestamp  |  データ更新時間  |
 
-### studentsテーブル
+#### studentsテーブル
 |  カラム名  |  データ型  |  詳細  |
 | ---- | ---- | ---- |
 |  id  |  bigint(20) unsigned  |  ID  |
@@ -75,7 +75,7 @@ macOS Big Sur バージョン11.4
 |  created_at  |  timestamp  |  データ作成時間  |
 |  updated_at |  timestamp  |  データ更新時間  |
 
-### meetingsテーブル
+#### meetingsテーブル
 |  カラム名  |  データ型  |  詳細  |
 | ---- | ---- | ---- |
 |  id  |  bigint(20) unsigned  |  ID  |
@@ -89,7 +89,7 @@ macOS Big Sur バージョン11.4
 |  created_at  |  timestamp  |  データ作成時間  |
 |  updated_at |  timestamp  |  データ更新時間  |
 
-### eventsテーブル
+#### eventsテーブル
 |  カラム名  |  データ型  |  詳細  |
 | ---- | ---- | ---- |
 |  id  |  bigint(20) unsigned  |  ID  |
