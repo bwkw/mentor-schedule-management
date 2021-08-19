@@ -48,13 +48,13 @@ Heroku（ https://protected-meadow-92642.herokuapp.com/login ）
     <img src="img/home.png" title="ホーム画面" width="80%">
 </p>
 
-- 予定入力フォームとカレンダーを1ページの左右に表示させることで、既存の予定を確認しながら、新しい予定を入力できるようにしました
+- 予定入力フォームとカレンダーを1ページの左右に表示させることで、既存の予定を確認しながら、新しい予定を入力できるようにしました（FullCalendarの利用）
 
 <p align="center">
     <img src="img/register.png" title="面談登録ページ" width="80%">
 </p>
 
-- 生徒数が多いため、生徒氏名の入力フォームに検索機能をつけました
+- 生徒数が多いため、生徒氏名の入力フォームに検索機能をつけました（Chosenの利用）
 
 <p align="center">
     <img src="img/search.png" title="生徒検索機能" width="80%">
