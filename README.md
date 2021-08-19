@@ -19,23 +19,23 @@ Googleカレンダーに記入、面談当日になれば、そのGoogleカレ�
 macOS Big Sur バージョン11.4
 
 #### フロントエンド
-・HTML
-・CSS
-・Bootstrap
-・jQuery
+- HTML
+- CSS
+- Bootstrap
+- jQuery
 
 #### バックエンド
-・PHP
-・Laravel
+- PHP
+- Laravel
 
 #### データベース
-・MySQL
+MySQL
 
 #### インフラ
-・AWS(EC2)
+AWS(EC2)
 
 #### デプロイ
-・Heroku
+Heroku
 
 
 ## 注力した機能
