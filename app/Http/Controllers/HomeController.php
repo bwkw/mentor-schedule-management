@@ -22,8 +22,7 @@ class HomeController extends Controller
         $nowDate = date('Y-m-d');
         $nowTime = date('H:i:s');
         
-        // 「現在の日付より前」かつ、「現在の時刻より終了時間が前」の情報をmeetings,eventsテーブルから削除
-        $meeting->formerMeetingsDelete($nowDate, $nowTime);
+        // 「現在の日付より前」かつ、「現在の時刻より終了時間が前」の情報をeventsテーブルから削除
         $event->formerEventsDelete($nowDate, $nowTime);
 
         // ユーザー情報に基づいて、meetingsテーブルとeventsテーブルから情報を取得
