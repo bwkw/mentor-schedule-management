@@ -37,10 +37,6 @@ MariaDB v10.2
 #### インフラ
 AWS（EC2）
 
-#### デプロイ
-Heroku（ https://protected-meadow-92642.herokuapp.com/login ）
-
-
 ## 注力した機能
 - ホーム画面では予定の日付・開始時間・終了時間で並び替えることで、直近の予定を分かりやすくしました
 
