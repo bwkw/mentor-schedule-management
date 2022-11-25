@@ -1,4 +1,4 @@
-# Mentor_Schedule_Management
+# mentor-schedule-management
 ※ 本アプリは、インターン先で運用しているアプリのためテストを行うことが出来ません。ご了承ください。
 
 
